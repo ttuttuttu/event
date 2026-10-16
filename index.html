@@ -26,12 +26,12 @@ let state;try{state=JSON.parse(localStorage.getItem(key))}catch(e){state=null}
 if(!state||state.prizes?.length!==C.total)state={prizes:shuffle([...prizeList]),picked:{},nickname:""};
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}};save();
 if(C.image){$("#banner").src=C.image;$("#banner").hidden=false}
-$("nickname").value=state.nickname||"";
+$("#nickname").value=state.nickname||"";
 function render(){grid.innerHTML="";for(let i=0;i<C.total;i++){const b=document.createElement("button");b.className="ticket"+(state.picked[i]?" picked":"");b.disabled=!!state.picked[i];b.innerHTML=`<span class="orn">${state.picked[i]?"✧":"✦"}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);b.onclick=()=>draw(i,b);grid.append(b)}$("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`}
 let busy=false;
-function draw(i,b){if(busy||state.picked[i])return;const nick=$("nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("nickname").focus();return}if(state.nickname&&state.nickname!==nick){alert("이 기기에서는 이미 다른 닉네임으로 참여했어요. (테스트 기록)");return}if(Object.keys(state.picked).length&&state.nickname===nick){alert("테스트에서는 한 번만 참여할 수 있어요. 초기화 버튼으로 다시 테스트해 주세요.");return}busy=true;state.nickname=nick;state.picked[i]={nick,prize:state.prizes[i]};save();b.classList.add("tearing");setTimeout(()=>{render();$("#resultTitle").textContent=state.prizes[i]==="꽝"?"다음 행운을 기다려요 ♡":"🎉 "+state.prizes[i]+" 당첨!";$("#resultText").textContent=state.prizes[i]==="꽝"?"이번에는 아쉽지만, 생일을 함께해 줘서 고마워요!":"반짝이는 행운이 찾아왔어요!";$("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${state.prizes[i]}`;$("#overlay").hidden=false;busy=false},730)}
+function draw(i,b){if(busy||state.picked[i])return;const nick=$("#nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("#nickname").focus();return}if(state.nickname&&state.nickname!==nick){alert("이 기기에서는 이미 다른 닉네임으로 참여했어요. (테스트 기록)");return}if(Object.keys(state.picked).length&&state.nickname===nick){alert("테스트에서는 한 번만 참여할 수 있어요. 초기화 버튼으로 다시 테스트해 주세요.");return}busy=true;state.nickname=nick;state.picked[i]={nick,prize:state.prizes[i]};save();b.classList.add("tearing");setTimeout(()=>{render();$("#resultTitle").textContent=state.prizes[i]==="꽝"?"다음 행운을 기다려요 ♡":"🎉 "+state.prizes[i]+" 당첨!";$("#resultText").textContent=state.prizes[i]==="꽝"?"이번에는 아쉽지만, 생일을 함께해 줘서 고마워요!":"반짝이는 행운이 찾아왔어요!";$("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${state.prizes[i]}`;$("#overlay").hidden=false;busy=false},730)}
 $("#close").onclick=()=>$("#overlay").hidden=true;
-$("#reset").onclick=()=>{if(confirm("이 기기의 테스트 기록을 초기화할까요?")){try{localStorage.removeItem(key)}catch(e){};state={prizes:shuffle([...prizeList]),picked:{},nickname:""};$("nickname").value="";save();render()}};
+$("#reset").onclick=()=>{if(confirm("이 기기의 테스트 기록을 초기화할까요?")){try{localStorage.removeItem(key)}catch(e){};state={prizes:shuffle([...prizeList]),picked:{},nickname:""};$("#nickname").value="";save();render()}};
 render();
 
 </script></body></html>
