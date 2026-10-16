@@ -102,6 +102,27 @@ html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
 @keyframes ticketPulse{50%{filter:brightness(1.4);transform:translateY(-3px)}}
 @media(min-width:768px){.experience .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
 @media(max-width:370px){.pager{gap:2px}.pager button{min-width:27px;padding:0 5px;font-size:11px}.number-search-row button{padding-inline:9px}}
+
+/* 광고판 이미지 풀블리드 + 생일 영문 하단 정렬 */
+.experience .ad-frame{background:#14244b;isolation:isolate}
+.experience .ad-art{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.experience .ad-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none}
+.experience .ad-frame:after{content:"";position:absolute;inset:0;height:auto;z-index:2;background:linear-gradient(180deg,rgba(5,16,37,.16) 0%,transparent 34%,rgba(5,16,37,.08) 51%,rgba(5,16,37,.48) 72%,rgba(5,16,37,.9) 100%);pointer-events:none}
+.experience .ad-copy{position:absolute;inset:0;z-index:3;padding:0 12px 0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;pointer-events:none}
+.experience .ad-copy .ad-kicker{order:0;margin:0 0 8px;color:#f9e6bd;text-shadow:0 2px 9px #000b}
+.experience .ad-copy h1{order:1;margin:0;font-size:clamp(36px,9vw,57px);line-height:.91;text-shadow:0 3px 15px #000c}
+.experience .ad-copy .ad-date{order:2;margin:5px 0 0;font-size:clamp(48px,12vw,72px);line-height:.95;text-shadow:0 2px 12px #000b}
+.experience .ad-copy p{position:static;order:3;margin:10px 0 43px;max-width:100%;font-size:clamp(9px,2.1vw,12px);text-shadow:0 2px 8px #000d}
+.experience .ad-label{z-index:4;text-shadow:0 2px 6px #000c}
+.experience .ad-glow{display:none}
+@media(min-width:768px){
+ .experience .ad-art{inset:0;width:100%;height:100%}
+ .experience .ad-copy{padding:0 14px}
+ .experience .ad-copy h1{font-size:clamp(39px,4vw,56px)}
+ .experience .ad-copy .ad-date{font-size:clamp(55px,6vw,73px);margin-top:6px}
+ .experience .ad-copy p{position:static;margin:10px 0 46px;font-size:11px}
+}
+@media(max-width:370px){.experience .ad-copy h1{font-size:34px}.experience .ad-copy .ad-date{font-size:47px}}
 </style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>11.11 BIRTHDAY PROJECT</span><span class="station-code">BD · 1111</span></div><div class="ad-frame"><div class="ad-label">SPECIAL BIRTHDAY ADVERTISEMENT</div><div class="ad-copy"><span class="ad-kicker">CELEBRATING YOUR DAY</span><h1>HAPPY<br>BIRTHDAY<span class="ad-dot">.</span></h1><div class="ad-date">11<span> / </span>11</div><p>오늘이라는 특별한 날, 당신에게 작은 행운을.</p></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div><div class="ad-bottom"><span>✧ WITH ALL MY LOVE</span><span>HAPPY 11.11</span></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">10 / 10 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
 // 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
 const DRAW_CONFIG = {
