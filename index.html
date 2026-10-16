@@ -47,7 +47,62 @@ html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
  .notice{font-size:12px}
 }
 @media (min-width:1200px){.wrap{max-width:1120px}.ad-frame{min-height:590px}}
-</style></head><body><main class="wrap"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>11.11 BIRTHDAY PROJECT</span><span class="station-code">BD · 1111</span></div><div class="ad-frame"><div class="ad-label">SPECIAL BIRTHDAY ADVERTISEMENT</div><div class="ad-copy"><span class="ad-kicker">CELEBRATING YOUR DAY</span><h1>HAPPY<br>BIRTHDAY<span class="ad-dot">.</span></h1><div class="ad-date">11<span> / </span>11</div><p>오늘이라는 특별한 날, 당신에게 작은 행운을.</p></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div><div class="ad-bottom"><span>✧ WITH ALL MY LOVE</span><span>HAPPY 11.11</span></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">10 / 10 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div id="grid" class="grid" aria-label="뽑기판"></div><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
+
+/* 11.11 세로형 기둥 전광판: 휴대폰은 위아래, 넓은 화면은 좌우 배치 */
+.experience{display:flex;flex-direction:column;align-items:center;gap:22px}
+.experience>.station,.experience>.panel{width:100%;margin:0;min-width:0}
+.experience>.station{max-width:440px;padding:9px;border-radius:14px}
+.experience .ad-frame{width:100%;height:auto;min-height:0;aspect-ratio:9/16;border-width:4px;border-radius:3px;
+ background:radial-gradient(ellipse at 52% 46%,#405c8e 0%,#1b3058 48%,#091733 100%)}
+.experience .ad-copy{position:absolute;inset:0;z-index:3;padding:clamp(37px,9vw,53px) 16px 0;text-align:center}
+.experience .ad-copy h1{font-size:clamp(35px,9vw,54px);line-height:.94;letter-spacing:-1px}
+.experience .ad-kicker{font-size:clamp(8px,2vw,11px);letter-spacing:2px}
+.experience .ad-date{font-size:clamp(48px,13vw,76px);margin-top:9px;line-height:1}
+.experience .ad-copy p{position:absolute;bottom:45px;left:14px;right:14px;margin:0 auto;max-width:none;
+ font-size:clamp(10px,2.4vw,12px);color:#fff5df;text-shadow:0 2px 8px #07142a}
+.experience .ad-art{inset:29% 0 0;width:100%;display:flex;justify-content:center;align-items:flex-end;z-index:2}
+.experience .ad-art img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom}
+.experience .ad-frame:after{content:'';position:absolute;inset:auto 0 0;height:29%;z-index:2;
+ background:linear-gradient(transparent,#081831b0 85%);pointer-events:none}
+.experience .ad-bottom{z-index:5}
+.experience>.panel{max-width:680px}
+@media(min-width:768px){
+ .wrap{max-width:1180px;padding:48px 30px 70px}
+ .experience{display:grid;grid-template-columns:minmax(290px,410px) minmax(0,1fr);align-items:center;justify-content:center;gap:clamp(24px,4vw,55px)}
+ .experience>.station{max-width:410px;justify-self:end}
+ .experience>.panel{max-width:none;padding:clamp(18px,2.5vw,32px)}
+ .experience .ad-frame{min-height:0;aspect-ratio:9/16}
+ .experience .ad-copy{padding:48px 14px 0}
+ .experience .ad-copy h1{font-size:clamp(38px,4vw,55px)}
+ .experience .ad-date{font-size:clamp(55px,6vw,75px)}
+ .experience .ad-copy p{font-size:11px}
+ .experience .ad-art{width:100%;top:29%}
+ .experience .grid{gap:clamp(6px,1vw,12px);padding:clamp(8px,1.1vw,14px)}
+ .experience .ticket{aspect-ratio:.8}
+ .experience .ticket .orn{font-size:clamp(21px,3vw,34px)}
+}
+@media(max-width:767px){.experience>.panel{margin-top:0}.experience>.station{width:min(100%,440px)}}
+@media(max-width:370px){.experience .ad-copy h1{font-size:32px}.experience .ad-date{font-size:46px}}
+
+/* 20장씩 페이지 나누기 + 빠른 번호 검색 */
+.experience .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(6px,1.7vw,10px)}
+.page-range{text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;color:#977542;margin:0 0 10px}
+.pager{display:flex;justify-content:center;align-items:center;gap:clamp(3px,1vw,7px);flex-wrap:wrap;margin:17px 0 12px}
+.pager[hidden]{display:none}
+.pager button{min-width:30px;height:34px;padding:0 7px;border:1px solid #d7c7a8;border-radius:7px;background:#fffdf7;color:#263c65;font:700 12px 'Noto Sans KR',sans-serif;cursor:pointer}
+.pager button.active{background:#233a67;color:#f6dc9e;border-color:#233a67}
+.pager button:disabled{opacity:.3;cursor:default}
+.pager-dots{color:#8f7d61;font-size:13px;padding:0 2px}
+.number-search{border-top:1px solid #e8dbc3;margin-top:15px;padding-top:15px}
+.number-search>label{display:block;margin-bottom:8px;color:#6c5d43;font-size:11px}
+.number-search-row{display:flex;gap:8px}
+.number-search-row input{min-width:0;flex:1;width:100%;border:1px solid #d9caa8;border-radius:7px;padding:11px 12px;font:13px 'Noto Sans KR',sans-serif;outline-color:#c6a76c}
+.number-search-row button{flex:0 0 auto;background:#233a67;border:0;border-radius:7px;padding:10px 13px;color:#fff4d7;font:700 12px 'Noto Sans KR',sans-serif;cursor:pointer}
+.ticket.highlight{outline:3px solid #edb849;outline-offset:2px;box-shadow:0 0 0 5px #f4d88e88,0 0 17px #edb849aa;animation:ticketPulse .65s ease-in-out 2}
+@keyframes ticketPulse{50%{filter:brightness(1.4);transform:translateY(-3px)}}
+@media(min-width:768px){.experience .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:370px){.pager{gap:2px}.pager button{min-width:27px;padding:0 5px;font-size:11px}.number-search-row button{padding-inline:9px}}
+</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>11.11 BIRTHDAY PROJECT</span><span class="station-code">BD · 1111</span></div><div class="ad-frame"><div class="ad-label">SPECIAL BIRTHDAY ADVERTISEMENT</div><div class="ad-copy"><span class="ad-kicker">CELEBRATING YOUR DAY</span><h1>HAPPY<br>BIRTHDAY<span class="ad-dot">.</span></h1><div class="ad-date">11<span> / </span>11</div><p>오늘이라는 특별한 날, 당신에게 작은 행운을.</p></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div><div class="ad-bottom"><span>✧ WITH ALL MY LOVE</span><span>HAPPY 11.11</span></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">10 / 10 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
 // 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
 const DRAW_CONFIG = {
   title: "HAPPY BIRTHDAY",
@@ -59,7 +114,8 @@ const DRAW_CONFIG = {
     "3등": "third-1111.png",
     "꽝": "fail-1111.png"
   },
-  total: 10,
+  total: 10, // 실제 이벤트에서는 150 또는 200 등으로 변경하고 prizes 합계도 맞춰 주세요.
+  perPage: 20,
   prizes: [
     { name: "1등", count: 1 },
     { name: "2등", count: 1 },
@@ -80,7 +136,65 @@ if(!state||state.prizes?.length!==C.total)state={prizes:shuffle([...prizeList]),
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(state))}catch(e){}};save();
 if(C.image){const banner=$("#banner");banner.onload=()=>banner.hidden=false;banner.onerror=()=>{banner.hidden=true;console.warn("첫 화면 이미지를 찾을 수 없습니다:",C.image)};banner.src=C.image}
 $("#nickname").value=state.nickname||"";
-function render(){grid.innerHTML="";for(let i=0;i<C.total;i++){const b=document.createElement("button");b.className="ticket"+(state.picked[i]?" picked":"");b.disabled=!!state.picked[i];b.innerHTML=`<span class="orn">${state.picked[i]?"✧":"✦"}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);b.onclick=()=>draw(i,b);grid.append(b)}$("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`}
+const PER_PAGE=Math.max(1,Math.floor(C.perPage||20));
+const totalPages=Math.ceil(C.total/PER_PAGE);
+let currentPage=1, highlightedTicket=0, highlightTimer;
+function goToPage(page,focusNumber=0){
+ currentPage=Math.max(1,Math.min(totalPages,page));
+ highlightedTicket=focusNumber;
+ render();
+ if(focusNumber){
+  const target=grid.querySelector(`[data-number="${focusNumber}"]`);
+  target?.scrollIntoView({behavior:"smooth",block:"center"});
+  clearTimeout(highlightTimer);
+  highlightTimer=setTimeout(()=>{highlightedTicket=0;target?.classList.remove("highlight")},2400);
+ }
+}
+function pageButton(label,page,options={}){
+ const b=document.createElement("button");b.type="button";b.textContent=label;
+ b.disabled=options.disabled||false;
+ if(options.current){b.classList.add("active");b.setAttribute("aria-current","page")}
+ b.setAttribute("aria-label",options.label||`${page}페이지`);
+ b.onclick=()=>goToPage(page);
+ return b;
+}
+function renderPager(){
+ const pager=$("#pager");pager.replaceChildren();
+ if(totalPages<=1){pager.hidden=true;return}
+ pager.hidden=false;
+ pager.append(pageButton("«",1,{disabled:currentPage===1,label:"첫 페이지"}));
+ pager.append(pageButton("‹",currentPage-1,{disabled:currentPage===1,label:"이전 페이지"}));
+ const visible=new Set([1,totalPages]);
+ for(let i=Math.max(1,currentPage-1);i<=Math.min(totalPages,currentPage+1);i++)visible.add(i);
+ let last=0;
+ for(const page of [...visible].sort((a,b)=>a-b)){
+  if(last&&page-last>1){const dots=document.createElement("span");dots.className="pager-dots";dots.textContent="…";pager.append(dots)}
+  pager.append(pageButton(String(page),page,{current:page===currentPage}));last=page;
+ }
+ pager.append(pageButton("›",currentPage+1,{disabled:currentPage===totalPages,label:"다음 페이지"}));
+ pager.append(pageButton("»",totalPages,{disabled:currentPage===totalPages,label:"마지막 페이지"}));
+}
+function render(){
+ grid.innerHTML="";
+ const start=(currentPage-1)*PER_PAGE,end=Math.min(start+PER_PAGE,C.total);
+ for(let i=start;i<end;i++){
+  const b=document.createElement("button");
+  b.className="ticket"+(state.picked[i]?" picked":"")+(highlightedTicket===i+1?" highlight":"");
+  b.disabled=!!state.picked[i];b.dataset.number=i+1;
+  b.innerHTML=`<span class="orn">${state.picked[i]?"✧":"✦"}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;
+  b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);
+  b.onclick=()=>draw(i,b);grid.append(b);
+ }
+ $("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`;
+ $("#pageRange").textContent=`${String(start+1).padStart(3,"0")} ~ ${String(end).padStart(3,"0")} / ${C.total} · ${currentPage} / ${totalPages} 페이지`;
+ $("#ticketNumber").max=C.total;
+ renderPager();
+}
+$("#numberSearch").addEventListener("submit",event=>{
+ event.preventDefault();const raw=$("#ticketNumber").value.trim(),number=Number(raw);
+ if(!raw||!Number.isInteger(number)||number<1||number>C.total){alert(`1부터 ${C.total} 사이의 번호를 입력해 주세요!`);return}
+ goToPage(Math.ceil(number/PER_PAGE),number);
+});
 let busy=false;
 function draw(i,b){if(busy||state.picked[i])return;const nick=$("#nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("#nickname").focus();return}if(state.nickname&&state.nickname!==nick){alert("이 기기에서는 이미 다른 닉네임으로 참여했어요. (테스트 기록)");return}if(Object.keys(state.picked).length&&state.nickname===nick){alert("테스트에서는 한 번만 참여할 수 있어요. 초기화 버튼으로 다시 테스트해 주세요.");return}busy=true;state.nickname=nick;state.picked[i]={nick,prize:state.prizes[i]};save();b.classList.add("tearing");setTimeout(()=>{render();$("#resultTitle").textContent=state.prizes[i]==="꽝"?"다음 행운을 기다려요 ♡":"🎉 "+state.prizes[i]+" 당첨!";$("#resultText").textContent=state.prizes[i]==="꽝"?"이번에는 아쉽지만, 생일을 함께해 줘서 고마워요!":"반짝이는 행운이 찾아왔어요!";$("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${state.prizes[i]}`;const img=$("#resultImage"),src=C.resultImages?.[state.prizes[i]];img.hidden=true;img.removeAttribute("src");if(src){img.onload=()=>img.hidden=false;img.onerror=()=>{img.hidden=true;console.warn("결과 이미지를 찾을 수 없습니다:",src)};img.src=src}$("#overlay").hidden=false;busy=false},730)}
 $("#close").onclick=()=>$("#overlay").hidden=true;
