@@ -359,12 +359,9 @@ const DRAW_CONFIG = {
 
 // Firebase 웹 앱 설정값을 아래에 직접 붙여 넣으세요. 채팅으로 보낼 필요 없습니다.
 const firebaseConfig = {
-  apiKey: "AIzaSyDvcTXRqS3hvDUxVzQYehmNVInfZrBTFfs",
-  authDomain: "birthday-lucky-draw-1111.firebaseapp.com",
-  projectId: "birthday-lucky-draw-1111",
-  storageBucket: "birthday-lucky-draw-1111.firebasestorage.app",
-  messagingSenderId: "491973836090",
-  appId: "1:491973836090:web:5b8b9aa06cb6275c2ae403"
+  apiKey: "PASTE_API_KEY", authDomain: "PASTE_AUTH_DOMAIN",
+  projectId: "PASTE_PROJECT_ID", storageBucket: "PASTE_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_MESSAGING_SENDER_ID", appId: "PASTE_APP_ID"
 };
 const EVENT_ID = "test"; // 테스트 전용 · 실제 이벤트와 분리
 const C=DRAW_CONFIG, grid=document.querySelector("#grid"), $=s=>document.querySelector(s);
@@ -459,7 +456,7 @@ async function draw(i,b){
  }catch(e){busy=false;render();alert(e.message||"선택에 실패했어요. 다시 시도해 주세요.")}
 }
 $("#close").onclick=()=>$("#overlay").hidden=true;
-$("#reset").remove();
+
 // 대화 링크를 아직 입력하지 않았다면 잘못된 페이지로 이동하지 않도록 안내합니다.
 [["#chatLink1",C.chatLinks?.first],["#chatLink2",C.chatLinks?.second]].forEach(([selector,url])=>{
  const link=$(selector);if(url && /^https?:\/\//i.test(url)){link.href=url}else{link.removeAttribute("target");link.addEventListener("click",e=>{e.preventDefault();alert("캐릭터 대화 링크가 아직 설정되지 않았어요.")})}
