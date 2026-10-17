@@ -252,7 +252,16 @@ html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
 /* 모든 페이지 번호를 생략 없이 표시하고 좁은 화면에서는 자연스럽게 줄바꿈 */
 .pager{flex-wrap:wrap}
 @media(max-width:420px){.pager{gap:3px}.pager button{min-width:27px;height:31px;padding:0 5px;font-size:11px}}
-</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>SPECIAL BIRTHDAY ADVERTISEMENT</span></div><div class="ad-frame"><div class="ad-copy"><h1 class="doyun-headline"><span class="doyun-small">HAPPY</span><span class="doyun-name">DOYUN</span><span class="doyun-small">DAY</span></h1></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">200 / 200 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">OK</button></div></div><script>
+
+/* 닉네임 입력칸 축소 + 상품별 잔여 수량 */
+.panel .inputrow{max-width:440px;margin:7px 0 12px}
+.panel .inputrow input{padding:9px 11px;font-size:13px;min-height:39px}
+.panel .inputrow button{width:39px;font-size:21px;flex:0 0 39px}
+.prize-stock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0 13px}
+.stock-item{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:8px 9px;background:#f4ead5;border:1px solid #dfcfad;border-radius:6px;color:#3b4a66;font-size:10px;min-width:0}
+.stock-item span{min-width:0;overflow-wrap:anywhere}.stock-item strong{color:#9c7435;white-space:nowrap;font-size:11px}
+@media(max-width:540px){.prize-stock{grid-template-columns:repeat(2,minmax(0,1fr))}.stock-item{font-size:10px}.panel .inputrow{max-width:100%}}
+</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>SPECIAL BIRTHDAY ADVERTISEMENT</span></div><div class="ad-frame"><div class="ad-copy"><h1 class="doyun-headline"><span class="doyun-small">HAPPY</span><span class="doyun-name">DOYUN</span><span class="doyun-small">DAY</span></h1></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">200 / 200 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><div class="prize-stock" id="prizeStock" aria-label="등수별 잔여 수량" aria-live="polite"></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">OK</button></div></div><script>
 // 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
 const DRAW_CONFIG = {
   title: "HAPPY DOYUN DAY",
@@ -262,6 +271,8 @@ const DRAW_CONFIG = {
     "1등": "first-1111.png",
     "2등": "second-1111.png",
     "3등": "third-1111.png",
+    "11.11 SPECIAL ①": "special1-1111.png",
+    "11.11 SPECIAL ②": "special2-1111.png",
     "꽝": "fail-1111.png"
   },
   total: 200, // 200장 디자인 테스트용. 실제 이벤트에서는 Firebase 연동 필요.
@@ -269,13 +280,15 @@ const DRAW_CONFIG = {
   prizes: [
     { name: "1등", count: 1 },
     { name: "2등", count: 1 },
-    { name: "3등", count: 10 },
-    { name: "꽝", count: 188 }
+    { name: "3등", count: 2 },
+    { name: "11.11 SPECIAL ①", count: 5 },
+    { name: "11.11 SPECIAL ②", count: 5 },
+    { name: "꽝", count: 186 }
   ]
 };
 
 // ⚠️ 화면 테스트 전용입니다. 실제 당첨 정보는 서버에 숨겨야 합니다.
-const C=DRAW_CONFIG, key="birthday-draw-demo-200-v1", grid=document.querySelector("#grid");
+const C=DRAW_CONFIG, key="birthday-draw-demo-200-special-v2", grid=document.querySelector("#grid");
 const $=s=>document.querySelector(s);
 const prizeList=C.prizes.flatMap(p=>Array(p.count).fill(p.name));
 if(prizeList.length!==C.total)throw Error("상품 수량의 합계가 전체 뽑기 수와 달라요.");
@@ -335,6 +348,15 @@ function render(){
  $("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`;
  $("#pageRange").textContent=`${String(start+1).padStart(3,"0")} ~ ${String(end).padStart(3,"0")} / ${C.total} · ${currentPage} / ${totalPages} 페이지`;
  $("#ticketNumber").max=C.total;
+ const pickedCounts={};
+ Object.values(state.picked).forEach(item=>{pickedCounts[item.prize]=(pickedCounts[item.prize]||0)+1});
+ const stock=$("#prizeStock");stock.replaceChildren();
+ C.prizes.forEach(p=>{
+  const item=document.createElement("div");item.className="stock-item";
+  const name=document.createElement("span");name.textContent=p.name;
+  const amount=document.createElement("strong");amount.textContent=`${p.count-(pickedCounts[p.name]||0)} / ${p.count}`;
+  item.append(name,amount);stock.append(item);
+ });
  renderPager();
 }
 $("#numberSearch").addEventListener("submit",event=>{
@@ -343,7 +365,7 @@ $("#numberSearch").addEventListener("submit",event=>{
  goToPage(Math.ceil(number/PER_PAGE),number);
 });
 let busy=false;
-function draw(i,b){if(busy||state.picked[i])return;const nick=$("#nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("#nickname").focus();return}if(state.nickname&&state.nickname!==nick){alert("이 기기에서는 이미 다른 닉네임으로 참여했어요. (테스트 기록)");return}if(Object.keys(state.picked).length&&state.nickname===nick){alert("테스트에서는 한 번만 참여할 수 있어요. 초기화 버튼으로 다시 테스트해 주세요.");return}busy=true;state.nickname=nick;state.picked[i]={nick,prize:state.prizes[i]};save();b.classList.add("tearing");setTimeout(()=>{render();$("#resultTitle").textContent=state.prizes[i]==="꽝"?"இ௰இ":"🎉 "+state.prizes[i]+" 당첨!";$("#resultText").textContent=state.prizes[i]==="꽝"?"아쉽지만, 생일을 함께해 주셔서 감사합니다 ( •̀ .̫ •́ )✧":"당첨을 축하합니다\n이 화면을 캡쳐해서 디엠 주세요\n☆*: .｡. o(≧▽≦)o .｡.:*☆";$("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${state.prizes[i]}`;const img=$("#resultImage"),src=C.resultImages?.[state.prizes[i]];img.hidden=true;img.removeAttribute("src");if(src){img.onload=()=>img.hidden=false;img.onerror=()=>{img.hidden=true;console.warn("결과 이미지를 찾을 수 없습니다:",src)};img.src=src}$("#overlay").hidden=false;busy=false},730)}
+function draw(i,b){if(busy||state.picked[i])return;const nick=$("#nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("#nickname").focus();return}if(state.nickname&&state.nickname!==nick){alert("이 기기에서는 이미 다른 닉네임으로 참여했어요. (테스트 기록)");return}if(Object.keys(state.picked).length&&state.nickname===nick){alert("테스트에서는 한 번만 참여할 수 있어요. 초기화 버튼으로 다시 테스트해 주세요.");return}busy=true;state.nickname=nick;state.picked[i]={nick,prize:state.prizes[i]};save();b.classList.add("tearing");setTimeout(()=>{render();$("#resultTitle").textContent=state.prizes[i]==="꽝"?"இ௰இ":"🎉 "+state.prizes[i]+" 당첨!";$("#resultText").textContent=state.prizes[i]==="꽝"?"아쉽지만, 생일을 함께해 주셔서 감사합니다\n( •̀ .̫ •́ )✧":"당첨을 축하합니다\n이 화면을 캡쳐해서 디엠 주세요\n☆*: .｡. o(≧▽≦)o .｡.:*☆";$("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${state.prizes[i]}`;const img=$("#resultImage"),src=C.resultImages?.[state.prizes[i]];img.hidden=true;img.removeAttribute("src");if(src){img.onload=()=>img.hidden=false;img.onerror=()=>{img.hidden=true;console.warn("결과 이미지를 찾을 수 없습니다:",src)};img.src=src}$("#overlay").hidden=false;busy=false},730)}
 $("#close").onclick=()=>$("#overlay").hidden=true;
 $("#reset").onclick=()=>{if(confirm("이 기기의 테스트 기록을 초기화할까요?")){try{localStorage.removeItem(key)}catch(e){};state={prizes:shuffle([...prizeList]),picked:{},nickname:""};$("#nickname").value="";save();render()}};
 render();
