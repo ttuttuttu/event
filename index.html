@@ -204,7 +204,42 @@ html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
  .experience .ad-copy h1.doyun-headline .doyun-small{font-size:27px}
  .experience .ad-copy h1.doyun-headline .doyun-name{font-size:56px}
 }
-</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>SPECIAL BIRTHDAY ADVERTISEMENT</span><span class="station-code">SPECIAL EDITION</span></div><div class="ad-frame"><div class="ad-copy"><h1 class="doyun-headline"><span class="doyun-small">HAPPY</span><span class="doyun-name">DOYUN</span><span class="doyun-small">DAY</span></h1></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">150 / 150 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
+
+/* 데스크톱: 세로 전광판과 뽑기판을 한 화면에 보기 쉽게 압축 */
+@media(min-width:768px){
+ .wrap{max-width:1180px;padding:clamp(12px,2vh,24px) 24px 20px}
+ .experience{grid-template-columns:minmax(230px, min(34vw, 350px)) minmax(0,1fr);gap:clamp(18px,3vw,38px);align-items:center}
+ .experience>.station{max-width:350px;padding:8px}
+ .experience>.panel{padding:clamp(14px,1.7vw,23px)}
+ .experience .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:9px}
+ .experience .ticket{aspect-ratio:auto;height:clamp(65px,9vh,88px)}
+ .experience .ticket .orn{height:35px}
+ .experience .ticket .plane-icon{width:30px;height:30px}
+ .experience .ticket .num{font-size:10px;margin-top:1px}
+ .meta{margin-bottom:12px;padding-bottom:10px}
+ .hint{margin:10px 0}
+ .page-range{margin-bottom:7px}
+ .pager{margin:10px 0 7px;gap:5px}
+ .pager button{height:30px;min-width:29px}
+ .number-search{margin-top:9px;padding-top:9px}
+ .number-search>label{margin-bottom:5px}
+ .number-search-row input{padding:8px 10px}
+ .number-search-row button{padding:8px 11px}
+ .foot{margin-top:13px}
+ .notice{margin-top:10px;line-height:1.5}
+}
+@media(min-width:768px) and (max-height:760px){
+ .experience{grid-template-columns:minmax(220px,290px) minmax(0,1fr)}
+ .experience>.station{max-width:290px}
+ .experience .ticket{height:clamp(54px,8.3vh,68px)}
+ .experience .ticket .orn{height:27px}
+ .experience .ticket .plane-icon{width:25px;height:25px}
+ .experience .station-top,.experience .station-bottom{padding-top:4px;padding-bottom:4px}
+}
+/* 모든 페이지 번호를 생략 없이 표시하고 좁은 화면에서는 자연스럽게 줄바꿈 */
+.pager{flex-wrap:wrap}
+@media(max-width:420px){.pager{gap:3px}.pager button{min-width:27px;height:31px;padding:0 5px;font-size:11px}}
+</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>SPECIAL BIRTHDAY ADVERTISEMENT</span></div><div class="ad-frame"><div class="ad-copy"><h1 class="doyun-headline"><span class="doyun-small">HAPPY</span><span class="doyun-name">DOYUN</span><span class="doyun-small">DAY</span></h1></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">150 / 150 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
 // 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
 const DRAW_CONFIG = {
   title: "HAPPY DOYUN DAY",
@@ -266,12 +301,8 @@ function renderPager(){
  pager.hidden=false;
  pager.append(pageButton("«",1,{disabled:currentPage===1,label:"첫 페이지"}));
  pager.append(pageButton("‹",currentPage-1,{disabled:currentPage===1,label:"이전 페이지"}));
- const visible=new Set([1,totalPages]);
- for(let i=Math.max(1,currentPage-1);i<=Math.min(totalPages,currentPage+1);i++)visible.add(i);
- let last=0;
- for(const page of [...visible].sort((a,b)=>a-b)){
-  if(last&&page-last>1){const dots=document.createElement("span");dots.className="pager-dots";dots.textContent="…";pager.append(dots)}
-  pager.append(pageButton(String(page),page,{current:page===currentPage}));last=page;
+ for(let page=1;page<=totalPages;page++){
+  pager.append(pageButton(String(page),page,{current:page===currentPage}));
  }
  pager.append(pageButton("›",currentPage+1,{disabled:currentPage===totalPages,label:"다음 페이지"}));
  pager.append(pageButton("»",totalPages,{disabled:currentPage===totalPages,label:"마지막 페이지"}));
