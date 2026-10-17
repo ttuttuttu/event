@@ -1,0 +1,470 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Happy Birthday 11.11</title><style>
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600;6..96,700;6..96,800;6..96,900&family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&display=swap');:root{--navy:#14244b;--navy2:#223969;--gold:#d9b974;--cream:#fff9eb}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0,#354e7a,#14244b 65%);color:var(--cream);font-family:'Noto Sans KR',sans-serif;min-height:100vh}.wrap{max-width:650px;margin:auto;padding:36px 18px 48px}.eyebrow,.foot,.modalTop{letter-spacing:3px;font-size:10px;color:var(--gold);text-align:center}header{text-align:center;margin:20px 0 28px}h1{font:normal clamp(34px,8vw,56px)/1.14 'DM Serif Display',serif;letter-spacing:2px;margin:0;color:#fff7df}h1 em{font-size:1.25em;font-style:italic;color:var(--gold)}header p{font-size:12px;letter-spacing:2px;color:#d3d9e6;margin-top:16px}.photo{min-height:175px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;margin-bottom:24px;overflow:visible;color:var(--gold);letter-spacing:3px;font:13px 'DM Serif Display',serif}.photo img{display:block;width:auto;max-width:100%;max-height:270px;height:auto;object-fit:contain;padding:0;filter:drop-shadow(0 10px 16px #09132b44)}.photo img[hidden]{display:none}.photo:has(img:not([hidden])){background:transparent}.photo:has(img:not([hidden])) span{display:none}.panel{background:var(--cream);border:5px double #c6a76c;border-radius:12px;color:var(--navy);padding:22px 16px;box-shadow:0 18px 40px #07142a55}.meta{display:flex;justify-content:space-between;font-size:10px;font-weight:700;letter-spacing:1px;border-bottom:1px solid #e7d7b6;padding-bottom:15px;margin-bottom:19px}.meta span:last-child{color:#9a793f}label{font-size:12px;font-weight:700}.inputrow{display:flex;gap:8px;margin:8px 0}.inputrow input{flex:1;min-width:0;border:1px solid #d9caa8;border-radius:7px;background:white;padding:13px;font:14px inherit;outline-color:var(--gold)}.inputrow button{width:45px;background:#e9dfcb;border:0;border-radius:7px;color:#6d624e;font-size:24px}.hint{text-align:center;color:#887e6b;font-size:11px;margin:20px 0}.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;background:#e9dec7;border:1px solid #c8b58e;padding:11px;border-radius:9px}.ticket{position:relative;aspect-ratio:0.73;border:0;border-radius:5px;background:linear-gradient(135deg,#2b4277,#142753);color:var(--gold);box-shadow:2px 3px 0 #a7a08e;cursor:pointer;overflow:hidden;transform-style:preserve-3d;transition:transform .2s,opacity .4s}.ticket:not(:disabled):active{transform:scale(.94)}.ticket:before{content:'';position:absolute;inset:5px;border:1px solid #c6a66685;border-radius:3px}.ticket .orn{font:clamp(18px,5vw,31px) 'DM Serif Display',serif;display:block}.ticket .num{font-size:10px;letter-spacing:1px;display:block;margin-top:5px}.ticket.picked{background:#e4d8bd;box-shadow:inset 0 2px 5px #b5a88d;cursor:default;color:#b5a78e}.ticket.picked:before{border:1px dashed #c6b99f}.ticket.picked .orn{opacity:.3}.ticket.tearing{animation:tear .7s ease-in forwards;z-index:2}@keyframes tear{0%{transform:perspective(400px) rotateY(0) translateY(0);opacity:1}45%{transform:perspective(400px) rotateY(-55deg) translateY(-12px);opacity:1}100%{transform:perspective(400px) rotateY(-95deg) translate(18px,-22px);opacity:0}}.foot{margin:25px 0 2px;color:#9e8254}.notice{text-align:center;color:#b6c2d9;font-size:10px;line-height:2}.overlay{position:fixed;inset:0;background:#071327bb;display:grid;place-items:center;padding:20px;z-index:10}.overlay[hidden]{display:none}.modal{width:min(100%,360px);background:var(--cream);color:var(--navy);border:5px double var(--gold);border-radius:12px;text-align:center;padding:30px 22px;box-shadow:0 25px 80px #0006}.spark{font-size:28px;color:var(--gold)}.result-image{display:block;max-width:100%;width:auto;height:auto;max-height:180px;object-fit:contain;margin:8px auto 16px}.result-image[hidden]{display:none}.modalTop{margin-top:12px}.modal h2{font:32px 'DM Serif Display',serif;margin:15px 0}.modal p{line-height:1.8}.modal #resultText{white-space:pre-line}.modal #resultInfo{font-size:12px;color:#756e62}.modal button{background:var(--navy);color:white;border:0;border-radius:6px;padding:13px 22px;margin-top:15px;font:inherit}@media(max-width:370px){.grid{gap:5px;padding:7px}.panel{padding:15px 10px}.ticket .num{font-size:9px}}
+
+/* 지하철 아이돌 생일 광고판 스타일 */
+.station{margin:8px 0 28px;padding:11px;background:linear-gradient(135deg,#8592a9,#273855 20%,#172441 80%,#a6aebc);border:1px solid #9ba8b8;border-radius:11px;box-shadow:0 15px 36px #07142a80,inset 0 1px 2px #fff8}
+.station-top,.station-bottom{display:flex;align-items:center;gap:8px;padding:5px 5px 11px;font-size:9px;letter-spacing:1.5px;color:#e3e9f2}.station-icon{color:#e9cc8b;font-size:14px}.station-code,.station-right{margin-left:auto;color:#b7c7de}.station-bottom{padding:11px 6px 3px;font-size:9px}.station-light{height:6px;width:6px;background:#90e9c3;border-radius:50%;box-shadow:0 0 8px #90e9c3}.ad-frame{position:relative;min-height:325px;overflow:hidden;border:3px solid #d8e0e8;background:radial-gradient(ellipse at 80% 30%,#4b6390 0%,#1e345e 42%,#0d1c3b 95%);box-shadow:inset 0 0 30px #0006,0 0 12px #d8e0e844}.ad-frame:before{content:'';position:absolute;inset:0;background:linear-gradient(112deg,#ffffff18 0%,transparent 29%,transparent 64%,#ffffff12 100%);z-index:4;pointer-events:none}.ad-label{position:absolute;z-index:5;top:13px;left:16px;color:#e5cf9c;font-size:8px;letter-spacing:1.5px}.ad-copy{position:relative;z-index:3;width:100%;padding:43px 18px 20px;text-align:left;pointer-events:none}.ad-kicker{display:block;color:#d6c39d;letter-spacing:2px;font-size:9px;margin-bottom:8px}.ad-copy h1{font:normal clamp(32px,8.7vw,62px)/.98 'DM Serif Display',serif;color:#fff8e7;letter-spacing:-1px;text-shadow:0 3px 15px #0a173d88}.ad-dot{color:#d6ad68}.ad-date{font:italic 45px 'DM Serif Display',serif;color:#e5c78d;margin-top:12px}.ad-date span{font-size:22px}.ad-copy p{font-size:10px;letter-spacing:.3px;color:#e0e6f0;max-width:210px;margin-top:18px;line-height:1.8}.ad-art{position:absolute;right:0;bottom:0;top:16px;width:64%;display:flex;align-items:end;justify-content:end;z-index:2;pointer-events:none}.ad-art img{display:block;max-width:100%;max-height:100%;height:auto;width:auto;object-fit:contain;object-position:right bottom;filter:drop-shadow(-8px 6px 15px #08163277)}.ad-art img[hidden]{display:none}.ad-glow{position:absolute;right:-20%;top:-10%;width:75%;height:90%;background:radial-gradient(ellipse,#9aaed044,transparent 70%);pointer-events:none}.ad-bottom{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;z-index:5;padding:9px 14px;background:#0817318c;color:#e5d1a7;font-size:8px;letter-spacing:1.3px}@media(min-width:540px){.ad-frame{min-height:380px}.ad-copy{padding:58px 28px 28px}.ad-copy h1{font-size:67px}.ad-date{font-size:55px}.ad-copy p{font-size:12px;max-width:270px}}@media(max-width:370px){.ad-frame{min-height:295px}.ad-copy{padding-left:12px}.ad-copy h1{font-size:30px}.ad-date{font-size:37px}.ad-copy p{max-width:155px;font-size:9px}.ad-art{width:67%}}
+
+/* 화면 너비에 맞춰 자동 정렬: 모바일 / 태블릿 / 데스크톱 */
+html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
+.wrap{width:100%;max-width:680px;margin-inline:auto;padding-inline:clamp(12px,3vw,24px)}
+.station,.panel{width:100%;min-width:0}
+.ad-frame{isolation:isolate}.ad-copy{max-width:100%}.ad-art img{max-height:100%}
+@media (max-width:539px){
+ .wrap{padding-top:18px;padding-bottom:30px}
+ .station{margin-bottom:20px;padding:7px}
+ .station-top,.station-bottom{font-size:clamp(7px,2.1vw,9px);letter-spacing:.6px}
+ .ad-frame{min-height:clamp(265px,86vw,340px)}
+ .ad-copy{padding:42px 12px 28px}
+ .ad-copy h1{font-size:clamp(29px,8.5vw,44px)}
+ .ad-date{font-size:clamp(35px,10vw,49px)}
+ .ad-copy p{max-width:46%;font-size:clamp(8px,2.1vw,10px)}
+ .ad-art{width:66%;top:18px}
+ .panel{padding:clamp(12px,4vw,20px)}
+ .grid{gap:clamp(4px,1.8vw,9px);padding:clamp(6px,2vw,11px)}
+ .ticket .orn{font-size:clamp(18px,6vw,29px)}
+}
+@media (min-width:768px){
+ .wrap{max-width:1060px;padding:48px 36px 70px}
+ .station{padding:14px;margin-bottom:32px;border-radius:16px}
+ .station-top,.station-bottom{padding-left:14px;padding-right:14px;font-size:11px}
+ .ad-frame{min-height:clamp(420px,48vw,570px)}
+ .ad-copy{padding:clamp(62px,7vw,92px) clamp(34px,5vw,75px) 55px}
+ .ad-copy h1{font-size:clamp(68px,7.8vw,110px)}
+ .ad-kicker{font-size:12px;letter-spacing:3px}
+ .ad-date{font-size:clamp(62px,7vw,96px);margin-top:18px}
+ .ad-date span{font-size:.45em}
+ .ad-copy p{font-size:14px;max-width:370px;margin-top:22px}
+ .ad-art{width:57%;top:18px}
+ .ad-label{top:18px;left:24px;font-size:10px}
+ .ad-bottom{padding:14px 24px;font-size:10px}
+ .panel{max-width:790px;margin-inline:auto;padding:28px 34px}
+ .grid{gap:13px;padding:15px}
+ .ticket{aspect-ratio:.9}
+ .ticket .orn{font-size:38px}
+ .ticket .num{font-size:12px}
+ .meta{font-size:12px}
+ .notice{font-size:12px}
+}
+@media (min-width:1200px){.wrap{max-width:1120px}.ad-frame{min-height:590px}}
+
+/* 11.11 세로형 기둥 전광판: 휴대폰은 위아래, 넓은 화면은 좌우 배치 */
+.experience{display:flex;flex-direction:column;align-items:center;gap:22px}
+.experience>.station,.experience>.panel{width:100%;margin:0;min-width:0}
+.experience>.station{max-width:440px;padding:9px;border-radius:14px}
+.experience .ad-frame{width:100%;height:auto;min-height:0;aspect-ratio:9/16;border-width:4px;border-radius:3px;
+ background:radial-gradient(ellipse at 52% 46%,#405c8e 0%,#1b3058 48%,#091733 100%)}
+.experience .ad-copy{position:absolute;inset:0;z-index:3;padding:clamp(37px,9vw,53px) 16px 0;text-align:center}
+.experience .ad-copy h1{font-size:clamp(35px,9vw,54px);line-height:.94;letter-spacing:-1px}
+.experience .ad-kicker{font-size:clamp(8px,2vw,11px);letter-spacing:2px}
+.experience .ad-date{font-size:clamp(48px,13vw,76px);margin-top:9px;line-height:1}
+.experience .ad-copy p{position:absolute;bottom:45px;left:14px;right:14px;margin:0 auto;max-width:none;
+ font-size:clamp(10px,2.4vw,12px);color:#fff5df;text-shadow:0 2px 8px #07142a}
+.experience .ad-art{inset:29% 0 0;width:100%;display:flex;justify-content:center;align-items:flex-end;z-index:2}
+.experience .ad-art img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom}
+.experience .ad-frame:after{content:'';position:absolute;inset:auto 0 0;height:29%;z-index:2;
+ background:linear-gradient(transparent,#081831b0 85%);pointer-events:none}
+.experience .ad-bottom{z-index:5}
+.experience>.panel{max-width:680px}
+@media(min-width:768px){
+ .wrap{max-width:1180px;padding:48px 30px 70px}
+ .experience{display:grid;grid-template-columns:minmax(290px,410px) minmax(0,1fr);align-items:center;justify-content:center;gap:clamp(24px,4vw,55px)}
+ .experience>.station{max-width:410px;justify-self:end}
+ .experience>.panel{max-width:none;padding:clamp(18px,2.5vw,32px)}
+ .experience .ad-frame{min-height:0;aspect-ratio:9/16}
+ .experience .ad-copy{padding:48px 14px 0}
+ .experience .ad-copy h1{font-size:clamp(38px,4vw,55px)}
+ .experience .ad-date{font-size:clamp(55px,6vw,75px)}
+ .experience .ad-copy p{font-size:11px}
+ .experience .ad-art{width:100%;top:29%}
+ .experience .grid{gap:clamp(6px,1vw,12px);padding:clamp(8px,1.1vw,14px)}
+ .experience .ticket{aspect-ratio:.8}
+ .experience .ticket .orn{font-size:clamp(21px,3vw,34px)}
+}
+@media(max-width:767px){.experience>.panel{margin-top:0}.experience>.station{width:min(100%,440px)}}
+@media(max-width:370px){.experience .ad-copy h1{font-size:32px}.experience .ad-date{font-size:46px}}
+
+/* 20장씩 페이지 나누기 + 빠른 번호 검색 */
+.experience .grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(6px,1.7vw,10px)}
+.page-range{text-align:center;font-size:11px;font-weight:700;letter-spacing:1px;color:#977542;margin:0 0 10px}
+.pager{display:flex;justify-content:center;align-items:center;gap:clamp(3px,1vw,7px);flex-wrap:wrap;margin:17px 0 12px}
+.pager[hidden]{display:none}
+.pager button{min-width:30px;height:34px;padding:0 7px;border:1px solid #d7c7a8;border-radius:7px;background:#fffdf7;color:#263c65;font:700 12px 'Noto Sans KR',sans-serif;cursor:pointer}
+.pager button.active{background:#233a67;color:#f6dc9e;border-color:#233a67}
+.pager button:disabled{opacity:.3;cursor:default}
+.pager-dots{color:#8f7d61;font-size:13px;padding:0 2px}
+.number-search{border-top:1px solid #e8dbc3;margin-top:15px;padding-top:15px}
+.number-search>label{display:block;margin-bottom:8px;color:#6c5d43;font-size:11px}
+.number-search-row{display:flex;gap:8px}
+.number-search-row input{min-width:0;flex:1;width:100%;border:1px solid #d9caa8;border-radius:7px;padding:11px 12px;font:13px 'Noto Sans KR',sans-serif;outline-color:#c6a76c}
+.number-search-row button{flex:0 0 auto;background:#233a67;border:0;border-radius:7px;padding:10px 13px;color:#fff4d7;font:700 12px 'Noto Sans KR',sans-serif;cursor:pointer}
+.ticket.highlight{outline:3px solid #edb849;outline-offset:2px;box-shadow:0 0 0 5px #f4d88e88,0 0 17px #edb849aa;animation:ticketPulse .65s ease-in-out 2}
+@keyframes ticketPulse{50%{filter:brightness(1.4);transform:translateY(-3px)}}
+@media(min-width:768px){.experience .grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:370px){.pager{gap:2px}.pager button{min-width:27px;padding:0 5px;font-size:11px}.number-search-row button{padding-inline:9px}}
+
+/* 광고판 이미지 풀블리드 + 생일 영문 하단 정렬 */
+.experience .ad-frame{background:#14244b;isolation:isolate}
+.experience .ad-art{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1}
+.experience .ad-art img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center center;filter:none}
+.experience .ad-frame:after{content:"";position:absolute;inset:0;height:auto;z-index:2;background:linear-gradient(180deg,rgba(5,16,37,.16) 0%,transparent 34%,rgba(5,16,37,.08) 51%,rgba(5,16,37,.48) 72%,rgba(5,16,37,.9) 100%);pointer-events:none}
+.experience .ad-copy{position:absolute;inset:0;z-index:3;padding:0 12px 0;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;pointer-events:none}
+.experience .ad-copy .ad-kicker{order:0;margin:0 0 8px;color:#f9e6bd;text-shadow:0 2px 9px #000b}
+.experience .ad-copy h1{order:1;margin:0;font-size:clamp(36px,9vw,57px);line-height:.91;text-shadow:0 3px 15px #000c}
+.experience .ad-copy .ad-date{order:2;margin:5px 0 0;font-size:clamp(48px,12vw,72px);line-height:.95;text-shadow:0 2px 12px #000b}
+.experience .ad-copy p{position:static;order:3;margin:10px 0 43px;max-width:100%;font-size:clamp(9px,2.1vw,12px);text-shadow:0 2px 8px #000d}
+.experience .ad-label{z-index:4;text-shadow:0 2px 6px #000c}
+.experience .ad-glow{display:none}
+@media(min-width:768px){
+ .experience .ad-art{inset:0;width:100%;height:100%}
+ .experience .ad-copy{padding:0 14px}
+ .experience .ad-copy h1{font-size:clamp(39px,4vw,56px)}
+ .experience .ad-copy .ad-date{font-size:clamp(55px,6vw,73px);margin-top:6px}
+ .experience .ad-copy p{position:static;margin:10px 0 46px;font-size:11px}
+}
+@media(max-width:370px){.experience .ad-copy h1{font-size:34px}.experience .ad-copy .ad-date{font-size:47px}}
+
+/* 11.11 광고판 디테일 정리: 얇은 메탈 프레임과 절제된 타이포그래피 */
+.experience>.station{background:linear-gradient(145deg,#536681 0%,#233652 12%,#142642 86%,#71829b 100%);border:1px solid #8193ad;box-shadow:0 16px 40px #06142d70,inset 0 1px 0 #ffffff6b}
+.experience .ad-frame{border:3px solid #d4deec;border-radius:2px;box-shadow:inset 0 0 0 1px #ffffff50,0 0 15px #d7e7ff20}
+.experience .ad-frame:before{background:linear-gradient(115deg,#ffffff0d,transparent 31%,transparent 75%,#ffffff0b);z-index:4}
+.experience .ad-frame:after{background:linear-gradient(180deg,#08172e24 0%,transparent 33%,#07152a15 54%,#061329aa 78%,#061329ed 100%)}
+.experience .ad-label{top:16px;left:16px;font-size:clamp(7px,1.55vw,9px);font-weight:500;letter-spacing:1.8px;color:#f0e2c4;opacity:.9}
+.experience .ad-copy{padding-inline:16px}
+.experience .ad-copy .ad-kicker{font-size:clamp(8px,1.8vw,10px);letter-spacing:clamp(2px,.6vw,3px);font-weight:500;margin-bottom:11px;color:#f3e7d0}
+.experience .ad-copy h1{font-size:clamp(36px,8.8vw,57px);line-height:.99;letter-spacing:-.7px;font-weight:400;color:#fff9ed;text-shadow:0 3px 14px #000b}
+.experience .ad-copy .ad-date{font-size:clamp(48px,12vw,72px);font-weight:400;letter-spacing:1px;margin-top:9px;color:#e9c88d}
+.experience .ad-copy p{margin-top:14px;margin-bottom:48px;line-height:1.7;letter-spacing:.1px}
+.experience .ad-bottom{padding:11px 13px;background:linear-gradient(90deg,#07162cb8,#0b1d36b8);border-top:1px solid #ffffff21;color:#e8d6b5;letter-spacing:1.2px}
+.experience .station-top,.experience .station-bottom{letter-spacing:1.1px}
+.experience .station-light{background:#76dfc2;box-shadow:0 0 9px #76dfc2}
+/* 이모지 대신 선으로 그린 금빛 종이비행기 SVG */
+.ticket .orn{height:clamp(30px,6vw,46px);display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;font-size:23px}
+.ticket .plane-icon{display:block;width:clamp(27px,5vw,42px);height:clamp(27px,5vw,42px);color:#e8c67e;filter:drop-shadow(0 2px 4px #050f2580);transition:transform .22s ease}
+.ticket:not(:disabled):hover .plane-icon{transform:translate(2px,-3px) rotate(5deg)}
+.ticket.picked .orn{opacity:.35}
+@media(min-width:768px){.experience .ad-copy h1{font-size:clamp(39px,4vw,56px)}.experience .ad-copy .ad-date{font-size:clamp(55px,6vw,73px)}.experience .ad-copy p{margin-bottom:50px}}
+@media(max-width:370px){.experience .ad-copy h1{font-size:34px}.experience .ad-copy .ad-date{font-size:47px}.ticket .plane-icon{width:25px;height:25px}}
+
+/* DOYUN 생일 전광판: 숫자 없는 이름 중심 레터링 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+.experience .ad-copy{justify-content:flex-end}
+.experience .ad-copy h1.doyun-headline{display:flex;flex-direction:column;align-items:center;gap:0;width:100%;font-family:'Cormorant Garamond','DM Serif Display',Georgia,serif;font-weight:600;letter-spacing:.015em;line-height:.82;text-shadow:0 3px 15px #000c}
+.experience .ad-copy h1.doyun-headline span{display:block;white-space:nowrap}
+.experience .ad-copy h1.doyun-headline .doyun-small{font-size:clamp(31px,8.1vw,51px);font-weight:500;letter-spacing:.15em;color:#fff9ed}
+.experience .ad-copy h1.doyun-headline .doyun-name{font-size:clamp(62px,16.4vw,105px);font-weight:600;letter-spacing:-.035em;line-height:1.02;color:#f0d298;margin:4px 0 6px}
+.experience .ad-copy .ad-kicker{margin-bottom:15px}
+.experience .ad-copy p{margin-top:20px;margin-bottom:51px}
+@media(min-width:768px){
+ .experience .ad-copy h1.doyun-headline .doyun-small{font-size:clamp(34px,3.6vw,49px)}
+ .experience .ad-copy h1.doyun-headline .doyun-name{font-size:clamp(65px,7.4vw,101px)}
+}
+@media(max-width:370px){
+ .experience .ad-copy h1.doyun-headline .doyun-small{font-size:30px}
+ .experience .ad-copy h1.doyun-headline .doyun-name{font-size:61px}
+}
+/* 전광판 안에는 HAPPY DOYUN DAY만 표시 */
+.experience .ad-copy{padding:0 14px 12%;justify-content:flex-end}
+.experience .ad-copy h1.doyun-headline{margin:0;gap:0}
+.experience .ad-copy h1.doyun-headline .doyun-name{margin:6px 0 8px}
+@media(min-width:768px){.experience .ad-copy{padding-bottom:12%}}
+
+/* 전광판 레터링: 참고 이미지와 비슷한 고대비 패션 에디토리얼 Bodoni */
+.experience .ad-copy h1.doyun-headline{
+ font-family:'Bodoni Moda','Times New Roman',serif;
+ font-weight:700;
+ line-height:1;
+ letter-spacing:0;
+ text-shadow:0 3px 14px rgba(2,10,26,.65);
+}
+.experience .ad-copy h1.doyun-headline .doyun-small{
+ font-family:'Bodoni Moda','Times New Roman',serif;
+ font-style:normal;
+ font-weight:800;
+ font-size:clamp(30px,7vw,44px);
+ letter-spacing:.09em;
+ color:#fff8e9;
+}
+.experience .ad-copy h1.doyun-headline .doyun-name{
+ font-family:'Bodoni Moda','Times New Roman',serif;
+ font-style:normal;
+ font-weight:900;
+ font-size:clamp(57px,14.5vw,96px);
+ letter-spacing:-.065em;
+ line-height:1.05;
+ color:#f4cf89;
+ margin:7px 0 9px;
+ text-shadow:0 4px 19px rgba(3,13,34,.8),0 0 26px rgba(229,181,100,.18);
+}
+@media(min-width:768px){
+ .experience .ad-copy h1.doyun-headline .doyun-small{font-size:clamp(35px,3.2vw,46px)}
+ .experience .ad-copy h1.doyun-headline .doyun-name{font-size:clamp(68px,6.5vw,99px)}
+}
+@media(max-width:370px){
+ .experience .ad-copy h1.doyun-headline .doyun-small{font-size:27px}
+ .experience .ad-copy h1.doyun-headline .doyun-name{font-size:56px}
+}
+
+/* 데스크톱: 세로 전광판과 뽑기판을 한 화면에 보기 쉽게 압축 */
+@media(min-width:768px){
+ .wrap{max-width:1180px;padding:clamp(12px,2vh,24px) 24px 20px}
+ .experience{grid-template-columns:minmax(230px, min(34vw, 350px)) minmax(0,1fr);gap:clamp(18px,3vw,38px);align-items:center}
+ .experience>.station{max-width:350px;padding:8px}
+ .experience>.panel{padding:clamp(14px,1.7vw,23px)}
+ .experience .grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;padding:9px}
+ .experience .ticket{aspect-ratio:auto;height:clamp(65px,9vh,88px)}
+ .experience .ticket .orn{height:35px}
+ .experience .ticket .plane-icon{width:30px;height:30px}
+ .experience .ticket .num{font-size:10px;margin-top:1px}
+ .meta{margin-bottom:12px;padding-bottom:10px}
+ .hint{margin:10px 0}
+ .page-range{margin-bottom:7px}
+ .pager{margin:10px 0 7px;gap:5px}
+ .pager button{height:30px;min-width:29px}
+ .number-search{margin-top:9px;padding-top:9px}
+ .number-search>label{margin-bottom:5px}
+ .number-search-row input{padding:8px 10px}
+ .number-search-row button{padding:8px 11px}
+ .foot{margin-top:13px}
+ .notice{margin-top:10px;line-height:1.5}
+}
+@media(min-width:768px) and (max-height:760px){
+ .experience{grid-template-columns:minmax(220px,290px) minmax(0,1fr)}
+ .experience>.station{max-width:290px}
+ .experience .ticket{height:clamp(54px,8.3vh,68px)}
+ .experience .ticket .orn{height:27px}
+ .experience .ticket .plane-icon{width:25px;height:25px}
+ .experience .station-top,.experience .station-bottom{padding-top:4px;padding-bottom:4px}
+}
+/* PC 전광판 크기 복원: 뽑기판과 균형 있게, 글자 잘림 방지 */
+@media(min-width:768px){
+ .wrap{max-width:1450px;width:100%;padding:clamp(14px,2vh,24px) clamp(20px,2.2vw,34px) 20px}
+ .experience{grid-template-columns:minmax(0, min(420px, calc((100dvh - 115px)*.5625))) minmax(0,1fr);gap:clamp(22px,3vw,46px);align-items:center}
+ .experience>.station{width:100%;max-width:none;justify-self:stretch;padding:10px}
+ .experience>.panel{min-width:0}
+ .experience .ad-copy h1.doyun-headline .doyun-small{font-size:clamp(30px,3.1vw,47px)}
+ .experience .ad-copy h1.doyun-headline .doyun-name{font-size:clamp(58px,5.7vw,87px);letter-spacing:-.075em}
+}
+@media(min-width:768px) and (max-height:760px){
+ .experience{grid-template-columns:minmax(0, min(385px, calc((100dvh - 95px)*.5625))) minmax(0,1fr)}
+ .experience>.station{max-width:none}
+}
+/* 모든 페이지 번호를 생략 없이 표시하고 좁은 화면에서는 자연스럽게 줄바꿈 */
+.pager{flex-wrap:wrap}
+@media(max-width:420px){.pager{gap:3px}.pager button{min-width:27px;height:31px;padding:0 5px;font-size:11px}}
+
+/* 닉네임 입력칸 축소 + 상품별 잔여 수량 */
+.panel .inputrow{max-width:440px;margin:7px 0 12px}
+.panel .inputrow input{padding:9px 11px;font-size:13px;min-height:39px}
+.panel .inputrow button{width:39px;font-size:21px;flex:0 0 39px}
+.prize-stock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0 13px}
+.stock-item{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:8px 9px;background:#f4ead5;border:1px solid #dfcfad;border-radius:6px;color:#3b4a66;font-size:10px;min-width:0}
+.stock-item span{min-width:0;overflow-wrap:anywhere}.stock-item strong{color:#9c7435;white-space:nowrap;font-size:11px}
+@media(max-width:540px){.prize-stock{grid-template-columns:repeat(2,minmax(0,1fr))}.stock-item{font-size:10px}.panel .inputrow{max-width:100%}}
+
+/* 입력과 잔여 수량을 한 줄에 배치: 아래로 별도 행이 생기지 않음 */
+.panel .entry-and-stock{display:grid;grid-template-columns:minmax(145px,.8fr) minmax(0,1.2fr);gap:12px;align-items:center;margin:0 0 7px}
+.panel .nickname-side,.panel .stock-side{min-width:0}
+.panel .nickname-side label,.panel .stock-label{display:block;font-size:10px;font-weight:700;line-height:1.4;margin-bottom:5px;color:#293b5b}
+.panel .inputrow{max-width:none;margin:0;gap:5px}
+.panel .inputrow input{width:100%;padding:8px 7px;font-size:12px;min-height:34px}
+.panel .inputrow button{width:33px;flex:0 0 33px;font-size:18px}
+.panel .prize-stock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;margin:0}
+.panel .stock-item{padding:4px 5px;border-radius:4px;gap:3px;font-size:9px;line-height:1.2}
+.panel .stock-item strong{font-size:9px}
+.panel .hint{margin-top:10px}
+@media(max-width:420px){.panel .entry-and-stock{grid-template-columns:minmax(112px,.77fr) minmax(0,1.23fr);gap:7px}.panel .stock-item{padding:4px 3px;font-size:8px}.panel .stock-item strong{font-size:8px}.panel .inputrow input{font-size:11px;padding:7px 5px}.panel .inputrow button{width:28px;flex-basis:28px}}
+
+/* 같은 행: 닉네임 + 번호 바로 가기 */
+.panel .entry-and-stock{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:10px}
+.panel .inline-search{border:0;margin:0;padding:0;min-width:0}
+.panel .inline-search label{display:block;font-size:10px;font-weight:700;line-height:1.4;margin:0 0 5px;color:#293b5b}
+.panel .inline-search .number-search-row{gap:5px}
+.panel .inline-search input{padding:8px 7px;min-height:34px;font-size:12px}
+.panel .inline-search button{padding:6px 9px;font-size:11px;white-space:nowrap}
+.chat-banners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:14px}
+.chat-banner{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;min-height:78px;padding:11px 12px;text-decoration:none;border-radius:8px;background:linear-gradient(135deg,#172c56,#344d78);border:1px solid #c7a86c;color:#fff4dc;box-shadow:0 3px 9px #1023471a}
+.chat-banner:nth-child(2){background:linear-gradient(135deg,#283b60,#5a5873)}
+.chat-banner-kicker{font:700 8px 'Noto Sans KR',sans-serif;letter-spacing:1px;color:#e5c98d}
+.chat-banner strong{font-size:12px;line-height:1.35}.chat-banner strong span{color:#e5c98d}.chat-banner small{font-size:9px;color:#e2e6ef}
+.notice-overlay{z-index:30}.notice-modal{width:min(100%,420px);padding:24px 22px}.notice-modal h2{font:700 23px 'Noto Sans KR',sans-serif;margin:12px 0 16px}.notice-body{text-align:left;border-top:1px solid #e5d6b6;border-bottom:1px solid #e5d6b6;padding:9px 0}.notice-body p{font-size:12px;line-height:1.8;margin:9px 0;word-break:keep-all}.notice-body strong{color:#87612a}.notice-modal button{cursor:pointer;width:100%;font-weight:700}
+@media(max-width:420px){.panel .entry-and-stock{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7px}.panel .inline-search input{font-size:11px;padding:7px 5px}.panel .inline-search button{font-size:10px;padding:6px}.chat-banner{padding:9px 8px;min-height:73px}.chat-banner strong{font-size:10px}.chat-banner-kicker{font-size:7px}}
+/* 모바일 이미지는 기존 파일, PC에서는 별도 파일 사용 (배너 크기 유지) */
+.chat-banner-picture{position:absolute;inset:0;display:block;z-index:-2}
+.chat-banner-picture[hidden]{display:none}
+.chat-banner-picture .chat-banner-image{z-index:auto}
+.chat-banner{position:relative;isolation:isolate;overflow:hidden;min-height:92px}
+.chat-banner-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+.chat-banner:has(.chat-banner-image:not([hidden]))::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,48,.86),rgba(10,22,48,.35));z-index:-1}
+.chat-banner-kicker,.chat-banner strong,.chat-banner small{position:relative;text-shadow:0 1px 5px rgba(0,0,0,.65)}
+@media(max-width:420px){.chat-banner{min-height:85px}}
+
+/* 모바일: 대화 배너만 세로 2줄로, 이미지와 텍스트 영역 분리 */
+@media(max-width:767px){
+ .chat-banners{grid-template-columns:minmax(0,1fr);gap:9px}
+ .chat-banner,.chat-banner:nth-child(2){min-height:112px;padding:15px;justify-content:center;gap:6px;background:#172c56}
+ .chat-banner:nth-child(2){background:#283b60}
+ .chat-banner-image{left:0;right:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-2}
+ .chat-banner:has(.chat-banner-image:not([hidden]))::before{background:linear-gradient(90deg,rgba(10,22,48,.85),rgba(10,22,48,.3) 65%,transparent)}
+ .chat-banner:nth-child(2):has(.chat-banner-image:not([hidden]))::before{background:linear-gradient(90deg,rgba(10,22,48,.85),rgba(10,22,48,.3) 65%,transparent)}
+ .chat-banner-kicker{font-size:9px;letter-spacing:.6px}
+ .chat-banner strong{font-size:13px;line-height:1.4}
+ .chat-banner small{font-size:9px}
+}
+
+/* 배너의 높이만 소폭 확장하고 기존 럭키드로우 패널의 외곽 크기는 유지 */
+.experience>.panel{position:relative}
+.experience .chat-banner{min-height:108px}
+.experience .chat-banners{margin-top:10px}
+.experience .foot{margin-top:17px;margin-bottom:0}
+.experience .hint{font-size:14px;font-weight:700;line-height:1.5;margin:10px 0 9px}
+.experience .page-range{display:none}
+@media(min-width:768px){
+ .experience>.panel{padding-bottom:clamp(14px,1.7vw,23px)}
+ .experience .chat-banner{min-height:108px}
+ .experience .pager{margin-bottom:5px}
+ .experience .foot{margin-top:18px}
+}
+@media(max-width:767px){.experience .chat-banner{min-height:125px}.experience .foot{margin-top:18px}}
+</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>SPECIAL BIRTHDAY ADVERTISEMENT</span></div><div class="ad-frame"><div class="ad-copy"><h1 class="doyun-headline"><span class="doyun-small">HAPPY</span><span class="doyun-name">DOYUN</span><span class="doyun-small">DAY</span></h1></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW</span><span id="count">200 / 200 LEFT</span></div><div class="entry-and-stock"><div class="nickname-side"><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임 입력" autocomplete="off"></div></div><form class="number-search inline-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" max="200" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">이동 ↗</button></div></form></div><p class="hint">마음에 드는 카드를 하나 골라 터치해 보세요</p><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><div class="chat-banners" aria-label="캐릭터 대화 바로 가기"><a class="chat-banner" id="chatLink1" href="#" target="_blank" rel="noopener noreferrer"><picture class="chat-banner-picture"><source media="(min-width: 768px)" srcset="chat1-pc-1111.png"><img class="chat-banner-image" src="chat1-1111.png" alt="한도윤 성인 버전" onerror="this.hidden=true"></picture><span class="chat-banner-kicker">HAN DOYUN · ADULT</span><strong>한도윤과 대화하기 <span aria-hidden="true">↗</span></strong><small>대화 페이지 바로 가기</small></a><a class="chat-banner" id="chatLink2" href="#" target="_blank" rel="noopener noreferrer"><picture class="chat-banner-picture"><source media="(min-width: 768px)" srcset="chat2-pc-1111.jpg"><img class="chat-banner-image" src="chat2-1111.jpg" alt="한도윤 학생 버전" onerror="this.hidden=true"></picture><span class="chat-banner-kicker">HAN DOYUN · STUDENT</span><strong>한도윤과 대화하기 <span aria-hidden="true">↗</span></strong><small>대화 페이지 바로 가기</small></a></div><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div></main><div class="overlay notice-overlay" id="entryNotice"><div class="modal notice-modal" role="dialog" aria-modal="true" aria-labelledby="noticeTitle" aria-describedby="noticeBody"><div class="spark">✦ ✧ ✦</div><p class="modalTop">BEFORE YOU JOIN</p><h2 id="noticeTitle">참여 유의사항</h2><div id="noticeBody" class="notice-body"><p><strong>1인 1회 참여</strong>만 가능합니다.</p><p>중복 참여 방지를 위해 <strong>닉네임 입력은 필수</strong>입니다.</p><p>입력한 닉네임과 디엠으로 확인되는 닉네임이 일치하지 않을 경우, <strong>상품 지급이 어려울 수 있습니다.</strong></p></div><button id="noticeConfirm" type="button">확인하고 참여하기</button></div></div><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">OK</button></div></div><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script>
+
+// 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
+const DRAW_CONFIG = {
+  title: "HAPPY DOYUN DAY",
+  date: "11.11",
+  chatLinks: {
+    first: "https://caveduck.io/ko/characters/ceee8bf7-6d27-46c7-9a63-b35c45f8bb49", // HAN DOYUN · ADULT
+    second: "https://caveduck.io/ko/characters/b504b18c-e647-4c10-8eae-bad027ef47a2" // HAN DOYUN · STUDENT
+  },
+  image: "main-1111.png", // 첫 화면 투명 PNG (index.html과 같은 폴더)
+  resultImages: { // 등수별 투명 PNG (index.html과 같은 폴더)
+    "1등": "first-1111.png",
+    "2등": "second-1111.png",
+    "3등": "third-1111.png",
+    "11.11 SPECIAL ①": "special1-1111.png",
+    "11.11 SPECIAL ②": "special2-1111.png",
+    "꽝": "fail-1111.png"
+  },
+  total: 200,
+  perPage: 20,
+  prizes: [
+    { name: "1등", count: 1 },
+    { name: "2등", count: 1 },
+    { name: "3등", count: 2 },
+    { name: "11.11 SPECIAL ①", count: 5 },
+    { name: "11.11 SPECIAL ②", count: 5 },
+    { name: "꽝", count: 186 }
+  ]
+};
+
+// Firebase 웹 앱 설정값을 아래에 직접 붙여 넣으세요. 채팅으로 보낼 필요 없습니다.
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY", authDomain: "PASTE_AUTH_DOMAIN",
+  projectId: "PASTE_PROJECT_ID", storageBucket: "PASTE_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_MESSAGING_SENDER_ID", appId: "PASTE_APP_ID"
+};
+const EVENT_ID = "general"; // 일반용
+const C=DRAW_CONFIG, grid=document.querySelector("#grid"), $=s=>document.querySelector(s);
+let state={picked:{},nickname:""};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore(), auth=firebase.auth();
+let ready=false, busy=false;
+async function initialize(){
+ try{
+  if(firebaseConfig.apiKey.startsWith("PASTE_"))throw Error("HTML의 firebaseConfig를 먼저 입력해 주세요.");
+  await auth.signInAnonymously();
+  db.collection("events").doc(EVENT_ID).collection("tickets").onSnapshot(snapshot=>{
+   state.picked={};snapshot.forEach(d=>{const t=d.data();if(t.picked)state.picked[Number(d.id)-1]={nick:t.nickname||"",prize:t.prize}});
+   ready=snapshot.size===C.total;render();
+   if(!ready)$("#count").textContent="관리자 초기 설정이 필요합니다";
+  },err=>{$("#count").textContent="연결 오류";console.error(err);alert("Firestore 연결 오류: "+err.message)});
+ }catch(e){console.error(e);$("#count").textContent="설정 확인 필요";alert(e.message)}
+}
+if(C.image){const banner=$("#banner");banner.onload=()=>banner.hidden=false;banner.onerror=()=>{banner.hidden=true;console.warn("첫 화면 이미지를 찾을 수 없습니다:",C.image)};banner.src=C.image}
+$("#nickname").value=state.nickname||"";
+const PER_PAGE=Math.max(1,Math.floor(C.perPage||20));
+const totalPages=Math.ceil(C.total/PER_PAGE);
+let currentPage=1, highlightedTicket=0, highlightTimer;
+function goToPage(page,focusNumber=0){
+ currentPage=Math.max(1,Math.min(totalPages,page));
+ highlightedTicket=focusNumber;
+ render();
+ if(focusNumber){
+  const target=grid.querySelector(`[data-number="${focusNumber}"]`);
+  target?.scrollIntoView({behavior:"smooth",block:"center"});
+  clearTimeout(highlightTimer);
+  highlightTimer=setTimeout(()=>{highlightedTicket=0;target?.classList.remove("highlight")},2400);
+ }
+}
+function pageButton(label,page,options={}){
+ const b=document.createElement("button");b.type="button";b.textContent=label;
+ b.disabled=options.disabled||false;
+ if(options.current){b.classList.add("active");b.setAttribute("aria-current","page")}
+ b.setAttribute("aria-label",options.label||`${page}페이지`);
+ b.onclick=()=>goToPage(page);
+ return b;
+}
+function renderPager(){
+ const pager=$("#pager");pager.replaceChildren();
+ if(totalPages<=1){pager.hidden=true;return}
+ pager.hidden=false;
+ for(let page=1;page<=totalPages;page++){
+  pager.append(pageButton(String(page),page,{current:page===currentPage}));
+ }
+}
+const PLANE_ICON = `<svg class="plane-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M56.5 7.5 7 29.1c-2.2 1-2 4.1.4 4.7l19.7 5.4 5.4 19.6c.7 2.4 3.8 2.6 4.8.3L59 10.6c1.1-2.5-.1-4.2-2.5-3.1Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="m27.1 39.2 18-18-12.6 37.6M27.1 39.2 7.4 33.8 45.1 21.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m10 47-5 5m17-2-4 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg>`;
+function render(){
+ grid.innerHTML="";
+ const start=(currentPage-1)*PER_PAGE,end=Math.min(start+PER_PAGE,C.total);
+ for(let i=start;i<end;i++){
+  const b=document.createElement("button");
+  b.className="ticket"+(state.picked[i]?" picked":"")+(highlightedTicket===i+1?" highlight":"");
+  b.disabled=!ready||!!state.picked[i];b.dataset.number=i+1;
+  b.innerHTML=`<span class="orn">${state.picked[i]?"✓":PLANE_ICON}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;
+  b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);
+  b.onclick=()=>draw(i,b);grid.append(b);
+ }
+ $("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`;
+
+ $("#ticketNumber").max=C.total;
+ renderPager();
+}
+$("#numberSearch").addEventListener("submit",event=>{
+ event.preventDefault();const raw=$("#ticketNumber").value.trim(),number=Number(raw);
+ if(!raw||!Number.isInteger(number)||number<1||number>C.total){alert(`1부터 ${C.total} 사이의 번호를 입력해 주세요!`);return}
+ goToPage(Math.ceil(number/PER_PAGE),number);
+});
+async function draw(i,b){
+ if(busy||!ready||state.picked[i])return;
+ const nick=$("#nickname").value.trim();if(!nick){alert("먼저 닉네임을 입력해 주세요!");$("#nickname").focus();return}
+ busy=true;b.disabled=true;
+ try{
+  const ref=db.collection("events").doc(EVENT_ID).collection("tickets").doc(String(i+1));
+  const prize=await db.runTransaction(async tx=>{
+   const snap=await tx.get(ref);if(!snap.exists)throw Error("아직 준비되지 않은 카드입니다.");
+   const ticket=snap.data();if(ticket.picked)throw Error("이미 선택된 카드입니다. 다른 번호를 선택해 주세요.");
+   tx.update(ref,{picked:true,nickname:nick,uid:auth.currentUser.uid,pickedAt:firebase.firestore.FieldValue.serverTimestamp()});
+   return ticket.prize;
+  });
+  state.nickname=nick;state.picked[i]={nick,prize};b.classList.add("tearing");
+  setTimeout(()=>{render();$("#resultTitle").textContent=prize==="꽝"?"இ௰இ":"🎉 "+prize+" 당첨!";
+   $("#resultText").textContent=prize==="꽝"?"아쉽지만, 생일을 함께해 주셔서 감사합니다\n( •̀ .̫ •́ )✧":"당첨을 축하합니다\n이 화면을 캡쳐해서 디엠 주세요\n☆*: .｡. o(≧▽≦)o .｡.:*☆";
+   $("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${prize}`;
+   const img=$("#resultImage"),src=C.resultImages?.[prize];img.hidden=true;img.removeAttribute("src");if(src){img.onload=()=>img.hidden=false;img.onerror=()=>img.hidden=true;img.src=src}
+   $("#overlay").hidden=false;busy=false;
+  },730);
+ }catch(e){busy=false;render();alert(e.message||"선택에 실패했어요. 다시 시도해 주세요.")}
+}
+$("#close").onclick=()=>$("#overlay").hidden=true;
+$("#reset").remove();
+// 대화 링크를 아직 입력하지 않았다면 잘못된 페이지로 이동하지 않도록 안내합니다.
+[["#chatLink1",C.chatLinks?.first],["#chatLink2",C.chatLinks?.second]].forEach(([selector,url])=>{
+ const link=$(selector);if(url && /^https?:\/\//i.test(url)){link.href=url}else{link.removeAttribute("target");link.addEventListener("click",e=>{e.preventDefault();alert("캐릭터 대화 링크가 아직 설정되지 않았어요.")})}
+});
+const entryNotice=$("#entryNotice"),noticeConfirm=$("#noticeConfirm");
+noticeConfirm.addEventListener("click",()=>{entryNotice.hidden=true;$("#nickname").focus()});
+render();
+initialize();
+noticeConfirm.focus();
+
+</script></body></html>
