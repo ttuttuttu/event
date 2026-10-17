@@ -1,8 +1,11 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DOYUN · ADMIN</title><style>body{background:#0e1d38;color:#f3e5c6;font-family:system-ui,sans-serif;max-width:700px;margin:45px auto;padding:20px}input,button,select{padding:12px;margin:5px;border-radius:7px}button{background:#d9bd7d;color:#15233e;border:0;cursor:pointer}section{border:1px solid #a38b59;padding:18px;border-radius:12px;margin:20px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere}small{color:#d6c9ac}</style></head><body><h1>DOYUN · ADMIN</h1><p>관리자 전용 · 처음 한 번 각 이벤트의 카드 200장을 생성합니다.</p><section><input id="email" type="email" placeholder="관리자 이메일"><input id="password" type="password" placeholder="비밀번호"><button id="login">관리자 로그인</button><p id="status">로그인이 필요합니다.</p></section><section id="controls" hidden><p>처음 배정은 각 이벤트당 한 번만 실행하세요. 기존 카드가 있으면 생성을 거부합니다.</p><button id="test">테스트용 200장 생성</button><button id="mutual">맞팔용 200장 생성</button><button id="general">일반용 200장 생성</button><button id="refresh">참여 현황 새로고침</button><pre id="out"></pre></section><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script>
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY", authDomain: "PASTE_AUTH_DOMAIN",
-  projectId: "PASTE_PROJECT_ID", storageBucket: "PASTE_STORAGE_BUCKET",
-  messagingSenderId: "PASTE_MESSAGING_SENDER_ID", appId: "PASTE_APP_ID"
+  apiKey: "AIzaSyDvcTXRqS3hvDUxVzQYehmNVInfZrBTFfs",
+  authDomain: "birthday-lucky-draw-1111.firebaseapp.com",
+  projectId: "birthday-lucky-draw-1111",
+  storageBucket: "birthday-lucky-draw-1111.firebasestorage.app",
+  messagingSenderId: "491973836090",
+  appId: "1:491973836090:web:5b8b9aa06cb6275c2ae403"
 };
 firebase.initializeApp(firebaseConfig);const auth=firebase.auth(),db=firebase.firestore(),$=s=>document.querySelector(s);const prizes=[...Array(1).fill("1등"),...Array(1).fill("2등"),...Array(2).fill("3등"),...Array(5).fill("11.11 SPECIAL ①"),...Array(5).fill("11.11 SPECIAL ②"),...Array(186).fill("꽝")];
 function shuffle(a){for(let i=a.length-1;i>0;i--){const bytes=new Uint32Array(1);crypto.getRandomValues(bytes);const j=bytes[0]%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
