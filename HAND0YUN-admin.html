@@ -12,5 +12,9 @@ function shuffle(a){for(let i=a.length-1;i>0;i--){const bytes=new Uint32Array(1)
 auth.onAuthStateChanged(u=>{$("#controls").hidden=!u;$("#status").textContent=u?"로그인됨 · UID: "+u.uid:"로그인이 필요합니다."});
 $("#login").onclick=async()=>{try{await auth.signInWithEmailAndPassword($("#email").value,$("#password").value);$("#password").value=""}catch(e){alert(e.message)}};
 async function seed(event){if(!confirm(event+" 이벤트 카드 200장을 최초 생성할까요?"))return;const col=db.collection("events").doc(event).collection("tickets");try{const existing=await col.limit(1).get();if(!existing.empty)throw Error("이미 카드가 있습니다. 덮어쓰지 않았습니다.");const shuffled=shuffle([...prizes]);const batch=db.batch();shuffled.forEach((prize,i)=>batch.set(col.doc(String(i+1)),{prize,picked:false}));await batch.commit();$("#out").textContent=event+" 카드 200장 생성 완료."}catch(e){alert(e.message)}}
-$("#test").onclick=()=>seed("test");$("#mutual").onclick=()=>seed("mutual");$("#general").onclick=()=>seed("general");$("#refresh").onclick=async()=>{try{let lines=[];for(const ev of ["test","mutual","general"]){const snap=await db.collection("events").doc(ev).collection("tickets").get();const picked=snap.docs.filter(x=>x.data().picked);lines.push(ev+": "+picked.length+" / "+snap.size+" 참여",...picked.map(d=>`${d.id}번 · ${d.data().nickname} · ${d.data().prize}`))}$("#out").textContent=lines.join("\n")}catch(e){alert(e.message)}};
+$("#test").onclick=()=>seed("test");$("#mutual").onclick=()=>seed("mutual");$("#general").onclick=()=>seed("general");$("#refresh").onclick=async()=>{try{let lines=[];for(const ev of ["test","mutual","general"]){const snap=await db.collection("events").doc(ev).collection("tickets").get();const picked=snap.docs.filter(x=>x.data().picked);const EVENT_LABEL = {
+  test: "테스트용",
+  mutual: "맞팔용",
+  general: "일반용"
+};lines.push(EVENT_LABEL[ev]+": "+picked.length+" / "+snap.size+" 참여",...picked.map(d=>`${d.id}번 · ${d.data().nickname} · ${d.data().prize}`))}$("#out").textContent=lines.join("\n")}catch(e){alert(e.message)}};
 </script></body></html>
