@@ -123,7 +123,29 @@ html{width:100%;overflow-x:hidden}body{width:100%;overflow-x:hidden}
  .experience .ad-copy p{position:static;margin:10px 0 46px;font-size:11px}
 }
 @media(max-width:370px){.experience .ad-copy h1{font-size:34px}.experience .ad-copy .ad-date{font-size:47px}}
-</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>11.11 BIRTHDAY PROJECT</span><span class="station-code">BD · 1111</span></div><div class="ad-frame"><div class="ad-label">SPECIAL BIRTHDAY ADVERTISEMENT</div><div class="ad-copy"><span class="ad-kicker">CELEBRATING YOUR DAY</span><h1>HAPPY<br>BIRTHDAY<span class="ad-dot">.</span></h1><div class="ad-date">11<span> / </span>11</div><p>오늘이라는 특별한 날, 당신에게 작은 행운을.</p></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div><div class="ad-bottom"><span>✧ WITH ALL MY LOVE</span><span>HAPPY 11.11</span></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">10 / 10 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
+
+/* 11.11 광고판 디테일 정리: 얇은 메탈 프레임과 절제된 타이포그래피 */
+.experience>.station{background:linear-gradient(145deg,#536681 0%,#233652 12%,#142642 86%,#71829b 100%);border:1px solid #8193ad;box-shadow:0 16px 40px #06142d70,inset 0 1px 0 #ffffff6b}
+.experience .ad-frame{border:3px solid #d4deec;border-radius:2px;box-shadow:inset 0 0 0 1px #ffffff50,0 0 15px #d7e7ff20}
+.experience .ad-frame:before{background:linear-gradient(115deg,#ffffff0d,transparent 31%,transparent 75%,#ffffff0b);z-index:4}
+.experience .ad-frame:after{background:linear-gradient(180deg,#08172e24 0%,transparent 33%,#07152a15 54%,#061329aa 78%,#061329ed 100%)}
+.experience .ad-label{top:16px;left:16px;font-size:clamp(7px,1.55vw,9px);font-weight:500;letter-spacing:1.8px;color:#f0e2c4;opacity:.9}
+.experience .ad-copy{padding-inline:16px}
+.experience .ad-copy .ad-kicker{font-size:clamp(8px,1.8vw,10px);letter-spacing:clamp(2px,.6vw,3px);font-weight:500;margin-bottom:11px;color:#f3e7d0}
+.experience .ad-copy h1{font-size:clamp(36px,8.8vw,57px);line-height:.99;letter-spacing:-.7px;font-weight:400;color:#fff9ed;text-shadow:0 3px 14px #000b}
+.experience .ad-copy .ad-date{font-size:clamp(48px,12vw,72px);font-weight:400;letter-spacing:1px;margin-top:9px;color:#e9c88d}
+.experience .ad-copy p{margin-top:14px;margin-bottom:48px;line-height:1.7;letter-spacing:.1px}
+.experience .ad-bottom{padding:11px 13px;background:linear-gradient(90deg,#07162cb8,#0b1d36b8);border-top:1px solid #ffffff21;color:#e8d6b5;letter-spacing:1.2px}
+.experience .station-top,.experience .station-bottom{letter-spacing:1.1px}
+.experience .station-light{background:#76dfc2;box-shadow:0 0 9px #76dfc2}
+/* 이모지 대신 선으로 그린 금빛 종이비행기 SVG */
+.ticket .orn{height:clamp(30px,6vw,46px);display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR',sans-serif;font-size:23px}
+.ticket .plane-icon{display:block;width:clamp(27px,5vw,42px);height:clamp(27px,5vw,42px);color:#e8c67e;filter:drop-shadow(0 2px 4px #050f2580);transition:transform .22s ease}
+.ticket:not(:disabled):hover .plane-icon{transform:translate(2px,-3px) rotate(5deg)}
+.ticket.picked .orn{opacity:.35}
+@media(min-width:768px){.experience .ad-copy h1{font-size:clamp(39px,4vw,56px)}.experience .ad-copy .ad-date{font-size:clamp(55px,6vw,73px)}.experience .ad-copy p{margin-bottom:50px}}
+@media(max-width:370px){.experience .ad-copy h1{font-size:34px}.experience .ad-copy .ad-date{font-size:47px}.ticket .plane-icon{width:25px;height:25px}}
+</style></head><body><main class="wrap"><div class="experience"><section class="station"><div class="station-top"><span class="station-icon">✦</span><span>11.11 BIRTHDAY PROJECT</span><span class="station-code">BD · 1111</span></div><div class="ad-frame"><div class="ad-label">SPECIAL BIRTHDAY ADVERTISEMENT</div><div class="ad-copy"><span class="ad-kicker">CELEBRATING YOUR DAY</span><h1>HAPPY<br>BIRTHDAY</h1><div class="ad-date">11<span> / </span>11</div><p>오늘이라는 특별한 날, 당신에게 작은 행운을.</p></div><div class="ad-art" id="photo"><img id="banner" alt="생일 기념 이미지" hidden></div><div class="ad-glow"></div><div class="ad-bottom"><span>✧ WITH ALL MY LOVE</span><span>HAPPY 11.11</span></div></div><div class="station-bottom"><span class="station-light"></span><span>THE BIRTHDAY STATION</span><span class="station-right">LUCKY DRAW →</span></div></section><section class="panel"><div class="meta"><span>LUCKY DRAW · TEST</span><span id="count">10 / 10 LEFT</span></div><label for="nickname">참여 닉네임</label><div class="inputrow"><input id="nickname" maxlength="20" placeholder="닉네임을 입력해 주세요" autocomplete="off"><button id="reset" title="테스트 초기화">↻</button></div><p class="hint">마음에 드는 종이를 하나 골라 터치해 보세요 ♡</p><div class="page-range" id="pageRange" aria-live="polite"></div><div id="grid" class="grid" aria-label="뽑기판"></div><nav class="pager" id="pager" aria-label="뽑기 페이지 이동"></nav><form class="number-search" id="numberSearch"><label for="ticketNumber">원하는 번호로 바로 이동</label><div class="number-search-row"><input id="ticketNumber" type="number" inputmode="numeric" min="1" placeholder="예: 111" aria-label="이동할 종이 번호"><button type="submit">번호 찾기 ↗</button></div></form><p class="foot">✦ MAY YOUR DAY BE FILLED WITH JOY ✦</p></section></div><p class="notice">디자인 테스트 버전 · 이 기기에만 기록됩니다.<br>실제 이벤트에는 Firebase 연동 후 사용해 주세요.</p></main><div class="overlay" id="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="resultTitle"><div class="spark">✦ ✧ ✦</div><img id="resultImage" class="result-image" alt="당첨 결과 이미지" hidden><p class="modalTop">YOUR LUCKY MOMENT</p><h2 id="resultTitle">축하해요!</h2><p id="resultText"></p><p id="resultInfo"></p><button id="close">확인했어요 ♡</button></div></div><script>
 // 이 파일만 수정하면 제목·사진·뽑기 개수·상품 비율을 변경할 수 있어요.
 const DRAW_CONFIG = {
   title: "HAPPY BIRTHDAY",
@@ -195,6 +217,7 @@ function renderPager(){
  pager.append(pageButton("›",currentPage+1,{disabled:currentPage===totalPages,label:"다음 페이지"}));
  pager.append(pageButton("»",totalPages,{disabled:currentPage===totalPages,label:"마지막 페이지"}));
 }
+const PLANE_ICON = `<svg class="plane-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M56.5 7.5 7 29.1c-2.2 1-2 4.1.4 4.7l19.7 5.4 5.4 19.6c.7 2.4 3.8 2.6 4.8.3L59 10.6c1.1-2.5-.1-4.2-2.5-3.1Z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="m27.1 39.2 18-18-12.6 37.6M27.1 39.2 7.4 33.8 45.1 21.2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m10 47-5 5m17-2-4 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".55"/></svg>`;
 function render(){
  grid.innerHTML="";
  const start=(currentPage-1)*PER_PAGE,end=Math.min(start+PER_PAGE,C.total);
@@ -202,7 +225,7 @@ function render(){
   const b=document.createElement("button");
   b.className="ticket"+(state.picked[i]?" picked":"")+(highlightedTicket===i+1?" highlight":"");
   b.disabled=!!state.picked[i];b.dataset.number=i+1;
-  b.innerHTML=`<span class="orn">${state.picked[i]?"✧":"✦"}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;
+  b.innerHTML=`<span class="orn">${state.picked[i]?"✓":PLANE_ICON}</span><span class="num">${String(i+1).padStart(3,"0")}</span>`;
   b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);
   b.onclick=()=>draw(i,b);grid.append(b);
  }
