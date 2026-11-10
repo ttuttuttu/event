@@ -366,7 +366,7 @@ const firebaseConfig = {
   messagingSenderId: "491973836090",
   appId: "1:491973836090:web:5b8b9aa06cb6275c2ae403"
 };
-const EVENT_ID = "mutual"; // 일반용 파일에서는 general
+const EVENT_ID = "mutual"; // 맞팔 참여용
 const C=DRAW_CONFIG, grid=document.querySelector("#grid"), $=s=>document.querySelector(s);
 let state={picked:{},nickname:""};
 const normalizeTwitterId=value=>value.normalize("NFKC").trim().replace(/^@/, "").toLowerCase();
@@ -374,15 +374,51 @@ const nicknameKey=nick=>encodeURIComponent(normalizeTwitterId(nick));
 firebase.initializeApp(firebaseConfig);
 const db=firebase.firestore(), auth=firebase.auth();
 let ready=false, busy=false;
+const ticketCollection=db.collection("events").doc(EVENT_ID).collection("tickets");
+let pageRequestId=0;
+async function loadPage(){
+ const requestId=++pageRequestId;
+ ready=false;
+ state.picked={};
+ render();
+ const start=(currentPage-1)*PER_PAGE;
+ const end=Math.min(start+PER_PAGE,C.total);
+ try{
+  // 문서 ID는 1~200 문자열이므로 정렬 범위 쿼리 대신 현재 페이지 20개만 직접 읽습니다.
+  const docs=await Promise.all(Array.from({length:end-start},(_,offset)=>ticketCollection.doc(String(start+offset+1)).get()));
+  if(requestId!==pageRequestId)return;
+  const missing=docs.some(doc=>!doc.exists);
+  for(const doc of docs){
+   if(doc.exists&&doc.data().picked){
+    const t=doc.data();state.picked[Number(doc.id)-1]={nick:t.nickname||"",prize:t.prize};
+   }
+  }
+  ready=!missing;
+  render();
+  if(missing)$("#count").textContent="관리자 초기 설정이 필요합니다";
+ }catch(err){
+  if(requestId!==pageRequestId)return;
+  console.error(err);$("#count").textContent="연결 오류";
+  alert("Firestore 연결 오류: "+err.message);
+ }
+}
+async function refreshRemaining(){
+ try{
+  // 전체 티켓 문서를 내려받지 않고 집계 쿼리로 선택된 수만 확인합니다.
+  const snapshot=await ticketCollection.where("picked","==",true).count().get();
+  const remaining=C.total-snapshot.data().count;
+  $("#count").textContent=`${remaining} / ${C.total} LEFT`;
+ }catch(err){
+  console.warn("남은 수 집계 실패:",err);
+  $("#count").textContent=`총 ${C.total}장`;
+ }
+}
 async function initialize(){
  try{
   if(firebaseConfig.apiKey.startsWith("PASTE_"))throw Error("HTML의 firebaseConfig를 먼저 입력해 주세요.");
   await auth.signInAnonymously();
-  db.collection("events").doc(EVENT_ID).collection("tickets").onSnapshot(snapshot=>{
-   state.picked={};snapshot.forEach(d=>{const t=d.data();if(t.picked)state.picked[Number(d.id)-1]={nick:t.nickname||"",prize:t.prize}});
-   ready=snapshot.size===C.total;render();
-   if(!ready)$("#count").textContent="관리자 초기 설정이 필요합니다";
-  },err=>{$("#count").textContent="연결 오류";console.error(err);alert("Firestore 연결 오류: "+err.message)});
+  await loadPage();
+  refreshRemaining();
  }catch(e){console.error(e);$("#count").textContent="설정 확인 필요";alert(e.message)}
 }
 if(C.image){const banner=$("#banner");banner.onload=()=>banner.hidden=false;banner.onerror=()=>{banner.hidden=true;console.warn("첫 화면 이미지를 찾을 수 없습니다:",C.image)};banner.src=C.image}
@@ -393,7 +429,7 @@ let currentPage=1, highlightedTicket=0, highlightTimer;
 function goToPage(page,focusNumber=0){
  currentPage=Math.max(1,Math.min(totalPages,page));
  highlightedTicket=focusNumber;
- render();
+ if(auth.currentUser)loadPage();else render();
  if(focusNumber){
   const target=grid.querySelector(`[data-number="${focusNumber}"]`);
   target?.scrollIntoView({behavior:"smooth",block:"center"});
@@ -429,7 +465,7 @@ function render(){
   b.setAttribute("aria-label",`${i+1}번 ${state.picked[i]?"선택 완료":"뽑기"}`);
   b.onclick=()=>draw(i,b);grid.append(b);
  }
- $("#count").textContent=`${C.total-Object.keys(state.picked).length} / ${C.total} LEFT`;
+ // 남은 총 카드 수는 refreshRemaining()의 집계 결과를 사용합니다.
 
  $("#ticketNumber").max=C.total;
  renderPager();
@@ -445,10 +481,7 @@ async function draw(i,b){
  if(!/^[a-z0-9_]{1,15}$/.test(handle)){alert("트위터(X) @아이디를 정확히 입력해 주세요. 영문·숫자·밑줄(_)만 사용하며, 최대 15자입니다.");$("#nickname").focus();return}
  const nick="@"+handle;
  const key=nicknameKey(nick);
- // 기존 참여 기록을 포함해 같은 X 아이디인지 확인합니다.
- if(Object.values(state.picked).some(t=>nicknameKey(t.nick||"")===key)){
-  alert("이미 이 이벤트에 참여한 트위터(X) 아이디입니다. 한 번만 뽑을 수 있어요!");return;
- }
+ // 전체 카드 조회 없이 nicknames 문서를 트랜잭션에서 확인해 중복 참여를 차단합니다.
  busy=true;b.disabled=true;
  try{
   const eventRef=db.collection("events").doc(EVENT_ID);
@@ -466,6 +499,7 @@ async function draw(i,b){
    return ticket.prize;
   });
   state.nickname=nick;state.picked[i]={nick,prize};b.classList.add("tearing");
+  refreshRemaining();
   setTimeout(()=>{render();$("#resultTitle").textContent=prize==="꽝"?"இ௰இ":"🎉 "+prize+" 당첨!";
    $("#resultText").textContent=prize==="꽝"?"아쉽지만, 생일을 함께해 주셔서 감사합니다\n( •̀ .̫ •́ )✧":"당첨을 축하합니다\n이 화면을 캡쳐해서 디엠 주세요\n☆*: .｡. o(≧▽≦)o .｡.:*☆";
    $("#resultInfo").textContent=`${nick} 님 · ${String(i+1).padStart(3,"0")}번 · ${prize}`;
