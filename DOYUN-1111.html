@@ -488,7 +488,14 @@ async function draw(i,b){
    const img=$("#resultImage"),src=C.resultImages?.[prize];img.hidden=true;img.removeAttribute("src");if(src){img.onload=()=>img.hidden=false;img.onerror=()=>img.hidden=true;img.src=src}
    $("#overlay").hidden=false;busy=false;
   },730);
- }catch(e){busy=false;render();alert(e.message||"선택에 실패했어요. 다시 시도해 주세요.")}
+ }catch(e){
+  busy=false;
+  const message=e.message||"선택에 실패했어요. 다시 시도해 주세요.";
+  const alreadyPicked=message.includes("이미 선택된 카드입니다.");
+  render();
+  alert(message);
+  if(alreadyPicked)await loadBoard();
+ }
 }
 $("#close").onclick=()=>$("#overlay").hidden=true;
 
