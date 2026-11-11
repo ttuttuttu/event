@@ -3,28 +3,39 @@
 <style>
 :root{color-scheme:dark;--bg:#0b1830;--panel:#142747;--panel2:#1a3155;--line:#50617b;--gold:#e8cc91;--muted:#b7c5d7}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#213a63 0,transparent 45%),var(--bg);color:#f7eedb;font-family:system-ui,-apple-system,'Noto Sans KR',sans-serif}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:wait}[hidden]{display:none!important}.login-wrap{min-height:100dvh;display:grid;place-items:center;padding:20px}.login-card{width:min(100%,420px);background:var(--panel);border:1px solid #947d55;border-radius:20px;padding:30px;box-shadow:0 20px 60px #0005}.eyebrow{font-size:11px;letter-spacing:.25em;color:var(--gold);font-weight:800}.login-card h1{margin:12px 0 7px;font-size:28px}.muted{color:var(--muted);font-size:13px;line-height:1.6}.field{display:block;margin:22px 0 0;font-size:13px;color:var(--gold)}input{width:100%;margin-top:8px;background:#0c1b33;border:1px solid #62718a;border-radius:9px;padding:13px;color:#fff;outline-offset:3px}input:focus{border-color:var(--gold)}.primary{border:0;border-radius:9px;background:var(--gold);color:#182642;font-weight:800;padding:13px 16px}.login-card .primary{width:100%;margin-top:23px}.error{color:#ffd1ca;font-size:13px;overflow-wrap:anywhere;min-height:20px}.app{max-width:1250px;margin:auto;padding:25px 20px 45px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid #536582;padding-bottom:20px;margin-bottom:23px}.top h1{margin:5px 0 0;font-size:24px}.top button,.ghost{background:transparent;color:var(--gold);border:1px solid #9d875d;border-radius:8px;padding:10px 13px}.dashboard{display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px}.side,.content{background:var(--panel);border:1px solid #50617b;border-radius:15px;padding:17px}.side h2{font-size:13px;color:var(--gold);letter-spacing:.09em;margin:0 0 15px}.event{display:block;width:100%;text-align:left;border:1px solid #536582;background:#11213b;color:#f7eedb;border-radius:10px;padding:15px;margin-bottom:10px}.event strong,.event small{display:block}.event small{margin-top:6px;color:var(--muted)}.event.active{border-color:var(--gold);background:#304366}.side-note{font-size:12px;color:var(--muted);line-height:1.6;margin-top:20px}.content-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}.content-head h2{margin:0;font-size:22px}.actions{display:flex;gap:8px;flex-wrap:wrap}.summary{color:var(--muted);font-size:13px;margin:14px 0 20px}.prize-list{display:grid;gap:12px}.prize{border:1px solid #52647d;border-radius:11px;background:var(--panel2);overflow:hidden}.prize-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;border-bottom:1px solid #415875}.prize-head strong{font-size:15px}.prize-head span{font-size:12px;color:var(--gold)}.entries{padding:10px 15px}.entry{display:grid;grid-template-columns:75px minmax(0,1fr);gap:8px;padding:9px 0;border-bottom:1px solid #3e5270;font-size:13px}.entry:last-child{border:0}.entry .number{color:var(--gold);font-variant-numeric:tabular-nums}.handle{overflow-wrap:anywhere}.empty{font-size:13px;color:var(--muted);padding:8px 0}.message{font-size:13px;color:var(--gold);min-height:18px;margin:14px 0 0;overflow-wrap:anywhere}@media(max-width:650px){.app{padding:18px 12px}.dashboard{grid-template-columns:1fr}.side{padding:12px}.side .event{margin-bottom:7px}.content{padding:13px}.top h1{font-size:20px}.content-head h2{font-size:19px}}
 </style></head><body>
-<div class="login-wrap" id="loginView"><form class="login-card" id="loginForm"><div class="eyebrow">PRIVATE ACCESS · 11.11</div><h1>DOYUN · ADMIN</h1><p class="muted">복원할 때 사용한 Google 계정으로 로그인하세요.</p><button class="primary" id="loginBtn" type="submit">Google 계정으로 로그인</button><p class="error" id="loginError" role="alert"></p></form></div>
-<div class="app" id="appView" hidden><header class="top"><div><div class="eyebrow">PRIVATE DASHBOARD</div><h1>DOYUN · ADMIN</h1></div><button id="logout" type="button">로그아웃</button></header><div class="dashboard"><aside class="side"><h2>EVENT LIST</h2><button type="button" class="event active" data-event="mutual"><strong>맞팔용</strong><small id="side-mutual">참여 현황 불러오는 중</small></button><p class="side-note">이벤트를 누르면 오른쪽에서 상품별 당첨 결과를 확인할 수 있어요. 참여하지 않은 카드의 결과는 표시하지 않습니다.</p></aside><section class="content"><div class="content-head"><h2 id="eventTitle">맞팔용 · 결과 확인</h2><div class="actions"><button type="button" class="ghost" id="refresh">새로고침</button><button type="button" class="ghost" id="backup">데이터 백업하기</button></div></div><p class="summary" id="summary">불러오는 중...</p><div class="prize-list" id="prizeList" aria-live="polite"></div><p class="message" id="message" role="status"></p></section></div></div>
+<div class="login-wrap" id="loginView"><form class="login-card" id="loginForm"><div class="eyebrow">PRIVATE ACCESS · 11.11</div><h1>DOYUN · ADMIN</h1><p class="muted">각 이벤트를 복원할 때 사용한 Google 계정으로 로그인하세요. 이벤트별로 별도 인증이 필요할 수 있습니다.</p><button class="primary" id="loginBtn" type="submit">Google 계정으로 로그인</button><p class="error" id="loginError" role="alert"></p><div style="display:flex;gap:8px;margin-top:15px"><button type="button" class="ghost" id="loginMutual">맞팔용</button><button type="button" class="ghost" id="loginGeneral">일반용</button></div></form></div>
+<div class="app" id="appView" hidden><header class="top"><div><div class="eyebrow">PRIVATE DASHBOARD</div><h1>DOYUN · ADMIN</h1></div><button id="logout" type="button">로그아웃</button></header><div class="dashboard"><aside class="side"><h2>EVENT LIST</h2><button type="button" class="event active" data-event="mutual"><strong>맞팔용</strong><small id="side-mutual">선택하면 불러옵니다</small></button><button type="button" class="event" data-event="general"><strong>일반용</strong><small id="side-general">선택하면 불러옵니다</small></button><p class="side-note">이벤트를 누르면 오른쪽에서 상품별 당첨 결과를 확인할 수 있어요. 참여하지 않은 카드의 결과는 표시하지 않습니다.</p></aside><section class="content"><div class="content-head"><h2 id="eventTitle">맞팔용 · 결과 확인</h2><div class="actions"><button type="button" class="ghost" id="refresh">새로고침</button><button type="button" class="ghost" id="backup">데이터 백업하기</button></div></div><p class="summary" id="accountInfo"></p><p class="summary" id="summary">불러오는 중...</p><div class="prize-list" id="prizeList" aria-live="polite"></div><p class="message" id="message" role="status"></p></section></div></div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script>
-// DOYUN-1111 새 Firebase 프로젝트
-const firebaseConfig = {
-  apiKey: "AIzaSyAfMZkm4OyxuF3I03hbejveZeWXdwfCp7I",
-  authDomain: "doyun-1111.firebaseapp.com",
-  projectId: "doyun-1111",
-  storageBucket: "doyun-1111.firebasestorage.app",
-  messagingSenderId: "551075012657",
-  appId: "1:551075012657:web:306e90fc84419eaf847510"
+// 두 이벤트는 각각 독립된 Firebase 프로젝트입니다.
+const CONFIGS={
+ mutual:{apiKey:"AIzaSyAfMZkm4OyxuF3I03hbejveZeWXdwfCp7I",authDomain:"doyun-1111.firebaseapp.com",projectId:"doyun-1111",storageBucket:"doyun-1111.firebasestorage.app",messagingSenderId:"551075012657",appId:"1:551075012657:web:306e90fc84419eaf847510"},
+ general:{apiKey:"AIzaSyCJXaEaB3aAkXRukNtrkHNcR7ig0YMBgZE",authDomain:"doyun-2026.firebaseapp.com",projectId:"doyun-2026",storageBucket:"doyun-2026.firebasestorage.app",messagingSenderId:"820277254538",appId:"1:820277254538:web:40a15e3cfcc7297d6b9073"}
 };
-firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth(),db=firebase.firestore(),$=s=>document.querySelector(s);
-const LABEL={mutual:"맞팔용"};
+const apps={},auths={},dbs={},$=s=>document.querySelector(s);
+for(const event of Object.keys(CONFIGS)){
+ apps[event]=firebase.initializeApp(CONFIGS[event],event);
+ auths[event]=apps[event].auth();dbs[event]=apps[event].firestore();
+}
+const LABEL={mutual:"맞팔용",general:"일반용"};
+function auth(){return auths[selected]}
+function db(){return dbs[selected]}
 const GROUPS=[{name:"1등",match:["1등"],total:1},{name:"2등",match:["2등"],total:1},{name:"3등",match:["3등"],total:2},{name:"11.11 SPECIAL ①",match:["11.11 SPECIAL ①"],total:5},{name:"11.11 SPECIAL ②",match:["11.11 SPECIAL ②"],total:5},{name:"꽝",match:["꽝"],total:186}];
-const prizes=GROUPS.flatMap(g=>Array(g.total).fill(g.name));let selected="mutual",loadSeq=0;
-function shuffle(a){for(let i=a.length-1;i>0;i--){let bytes=new Uint32Array(1);crypto.getRandomValues(bytes);let j=bytes[0]%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+let selected="mutual",loadSeq=0;
 function el(tag,cls,txt){let n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
-function render(snap){const docs=snap.docs.map(d=>({number:Number(d.id),...d.data()}));const picked=docs.filter(d=>d.picked);$("#summary").textContent=`전체 ${snap.size}장 · 참여 ${picked.length}명 · 남은 카드 ${Math.max(0,snap.size-picked.length)}장`;$("#prizeList").replaceChildren();for(const group of GROUPS){const entries=picked.filter(d=>group.match.includes(d.prize)).sort((a,b)=>a.number-b.number);const section=el("section","prize");const head=el("div","prize-head");head.append(el("strong","",group.name),el("span","",`${entries.length} / ${group.total}명`));section.append(head);const list=el("div","entries");if(!entries.length)list.append(el("div","empty","아직 참여 기록이 없습니다."));for(const entry of entries){const row=el("div","entry");row.append(el("span","number",`${entry.number}번`),el("span","handle",entry.nickname||"아이디 미기록"));list.append(row)}section.append(list);$("#prizeList").append(section)}}
-async function load(){if(!auth.currentUser)return;const event=selected,seq=++loadSeq;$("#summary").textContent="참여 기록을 불러오는 중...";$("#message").textContent="";try{const snap=await db.collection("events").doc(event).collection("tickets").get();if(seq!==loadSeq)return;render(snap);$("#side-"+event).textContent=`${snap.docs.filter(d=>d.data().picked).length} / ${snap.size} 참여`}catch(e){if(seq!==loadSeq)return;$("#summary").textContent="불러오지 못했습니다.";$("#message").textContent=e.message}}
-async function refreshAll(){if(!auth.currentUser)return;await load();for(const event of Object.keys(LABEL)){if(event===selected)continue;try{const snap=await db.collection("events").doc(event).collection("tickets").get();$("#side-"+event).textContent=`${snap.docs.filter(d=>d.data().picked).length} / ${snap.size} 참여`}catch(e){$("#side-"+event).textContent="조회 실패"}}}
+function render(snap){const docs=snap.docs.map(d=>({number:Number(d.id),...d.data()}));const picked=docs.filter(d=>d.picked);$("#summary").textContent=`전체 200장 · 참여 ${picked.length}명 · 남은 카드 ${Math.max(0,200-picked.length)}장`;$("#prizeList").replaceChildren();for(const group of GROUPS){const entries=picked.filter(d=>group.match.includes(d.prize)).sort((a,b)=>a.number-b.number);const section=el("section","prize");const head=el("div","prize-head");head.append(el("strong","",group.name),el("span","",`${entries.length} / ${group.total}명`));section.append(head);const list=el("div","entries");if(!entries.length)list.append(el("div","empty","아직 참여 기록이 없습니다."));for(const entry of entries){const row=el("div","entry");row.append(el("span","number",`${entry.number}번`),el("span","handle",entry.nickname||"아이디 미기록"));list.append(row)}section.append(list);$("#prizeList").append(section)}}
+async function load(){
+ const event=selected,seq=++loadSeq;
+ const user=auths[event].currentUser;
+ if(!user){showLogin();return}
+ $("#summary").textContent="참여 기록을 불러오는 중...";$("#message").textContent="";
+ try{
+  // 전체 200장을 읽는 대신 당첨/참여한 카드만 조회합니다.
+  const snap=await dbs[event].collection("events").doc(event).collection("tickets").where("picked","==",true).get();
+  if(seq!==loadSeq)return;
+  render(snap);$("#side-"+event).textContent=`${snap.size} / 200 참여`;
+ }catch(e){if(seq!==loadSeq)return;$("#summary").textContent="불러오지 못했습니다.";$("#message").textContent="조회 오류: "+e.message}
+}
+async function refreshAll(){await load()}
 // 읽기 전용 백업: 기존 카드/참여 기록은 절대 수정하지 않습니다.
 function backupValue(value){
  if(value instanceof firebase.firestore.Timestamp)return {__firestoreType:"timestamp",seconds:value.seconds,nanoseconds:value.nanoseconds};
@@ -35,11 +46,11 @@ function backupValue(value){
  return value;
 }
 async function backupSelected(){
- if(!auth.currentUser)return alert("관리자 로그인이 필요합니다.");
+ if(!auth().currentUser)return alert("관리자 로그인이 필요합니다.");
  const event=selected,btn=$("#backup");
  btn.disabled=true;$("#message").textContent=`${LABEL[event]} 백업 파일을 만드는 중...`;
  try{
-  const root=db.collection("events").doc(event);
+  const root=dbs[event].collection("events").doc(event);
   const [tickets,nicknames]=await Promise.all([root.collection("tickets").get(),root.collection("nicknames").get()]);
   if(tickets.size!==200)throw Error(`카드가 ${tickets.size}장만 조회되었습니다. 200장이 아니므로 백업을 중단했습니다.`);
   const serialize=snap=>snap.docs.map(doc=>({id:doc.id,data:backupValue(doc.data())}));
@@ -53,17 +64,33 @@ async function backupSelected(){
  finally{btn.disabled=false}
 }
 $("#backup").addEventListener("click",backupSelected);
-function select(event){selected=event;document.querySelectorAll(".event").forEach(b=>{const active=b.dataset.event===event;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});$("#eventTitle").textContent=LABEL[event]+" · 결과 확인";load()}
+function showLogin(){
+ const user=auth().currentUser;
+ $("#loginView").hidden=!!user;$("#appView").hidden=!user;
+ $("#loginError").textContent="";
+ $("#loginForm .muted").textContent=LABEL[selected]+" Firebase에 복원할 때 사용한 Google 계정으로 로그인하세요.";
+ if(user)$("#accountInfo").textContent=`연결: ${CONFIGS[selected].projectId} · ${user.email||"로그인됨"}`;
+}
+function select(event){
+ selected=event;++loadSeq;
+ document.querySelectorAll(".event").forEach(b=>{const active=b.dataset.event===event;b.classList.toggle("active",active);b.setAttribute("aria-pressed",String(active))});
+ $("#eventTitle").textContent=LABEL[event]+" · 결과 확인";
+ if(auth().currentUser){showLogin();load()}else{showLogin()}
+}
 document.querySelectorAll(".event").forEach(b=>b.addEventListener("click",()=>select(b.dataset.event)));
 $("#loginForm").addEventListener("submit",async e=>{
  e.preventDefault();$("#loginError").textContent="";$("#loginBtn").disabled=true;
- try{
-  const provider=new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithPopup(provider);
- }catch(err){$("#loginError").textContent="로그인 실패: "+err.message}
+ try{await auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())}
+ catch(err){$("#loginError").textContent="로그인 실패: "+err.message+" (Firebase 승인된 도메인도 확인해 주세요.)"}
  finally{$("#loginBtn").disabled=false}
 });
-auth.onAuthStateChanged(user=>{$("#loginView").hidden=!!user;$("#appView").hidden=!user;if(user){select(selected);refreshAll()}else{++loadSeq;$("#prizeList").replaceChildren()}});
-$("#logout").addEventListener("click",()=>auth.signOut().catch(e=>alert(e.message)));$("#refresh").addEventListener("click",refreshAll);
-
+for(const event of Object.keys(auths)){
+ auths[event].onAuthStateChanged(user=>{
+  if(event!==selected)return;
+  showLogin();if(user)load();else{++loadSeq;$("#prizeList").replaceChildren()}
+ });
+}
+$("#loginMutual").onclick=()=>select("mutual");$("#loginGeneral").onclick=()=>select("general");
+$("#logout").addEventListener("click",async()=>{try{await auth().signOut()}catch(e){alert(e.message)}});
+$("#refresh").addEventListener("click",refreshAll);
 </script></body></html>
