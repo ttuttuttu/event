@@ -404,12 +404,20 @@ async function loadPage(){
 }
 async function refreshRemaining(){
  try{
-  // 전체 티켓 문서를 내려받지 않고 집계 쿼리로 선택된 수만 확인합니다.
-  const snapshot=await ticketCollection.where("picked","==",true).count().get();
-  const remaining=C.total-snapshot.data().count;
-  $("#count").textContent=`${remaining} / ${C.total} LEFT`;
+  // 먼저 읽기 비용이 적은 집계 쿼리를 시도합니다.
+  let pickedCount;
+  try{
+   const snapshot=await ticketCollection.where("picked","==",true).count().get();
+   pickedCount=snapshot.data().count;
+  }catch(countError){
+   // 집계가 지원되지 않거나 실패하면 뽑힌 카드만 조회합니다.
+   console.warn("집계 조회 실패, 일반 조회로 재시도:",countError);
+   const pickedSnapshot=await ticketCollection.where("picked","==",true).get();
+   pickedCount=pickedSnapshot.size;
+  }
+  $("#count").textContent=`${C.total-pickedCount} / ${C.total} LEFT`;
  }catch(err){
-  console.warn("남은 수 집계 실패:",err);
+  console.warn("남은 수 조회 실패:",err);
   $("#count").textContent=`총 ${C.total}장`;
  }
 }
