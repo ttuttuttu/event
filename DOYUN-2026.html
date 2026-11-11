@@ -404,9 +404,9 @@ async function loadPage(){
 }
 async function refreshRemaining(){
  try{
-  // 전체 티켓 문서를 내려받지 않고 집계 쿼리로 선택된 수만 확인합니다.
-  const snapshot=await ticketCollection.where("picked","==",true).count().get();
-  const remaining=C.total-snapshot.data().count;
+  // 집계 쿼리 대신 이미 선택된 카드만 조회합니다. 전체 200장을 다시 읽지 않습니다.
+  const snapshot=await ticketCollection.where("picked","==",true).get();
+  const remaining=C.total-snapshot.size;
   $("#count").textContent=`${remaining} / ${C.total} LEFT`;
  }catch(err){
   console.warn("남은 수 집계 실패:",err);
